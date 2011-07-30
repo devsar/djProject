@@ -15,4 +15,33 @@ $(function(){
         };
         return oldSync(method, model, newSuccess, error);
     };
-);
+  
+    window.Task = Backbone.Model.extend({
+      url: function(){
+         return this.get('resource_uri') || this.collection.url;
+      }
+    });
+
+    window.Tasks = Backbone.Collection.extend({
+      url: TASKS_API,
+
+      parse: function(data){
+          return data.objects;
+      }
+    });
+    
+    window.Project = Backbone.Model.extend({
+      url: function(){
+         return this.get('resource_uri') || this.collection.url;
+      }
+    });
+
+    window.Projectss = Backbone.Collection.extend({
+      url: PROJECTS_API,
+
+      parse: function(data){
+          return data.objects;
+      }
+    });
+});
+

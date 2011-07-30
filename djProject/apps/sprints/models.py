@@ -15,12 +15,12 @@ class Sprint(models.Model):
     name = models.CharField(max_length=32)
     start_date = models.DateField()
     end_date = models.DateField()
-    status = models.CharField(choice=SPRINT_STATUS)
+    status = models.CharField(choices=SPRINT_STATUS, max_length=12)
 
 class TimeLog(models.Model):
     sprint = models.ForeignKey(Sprint)
     start_time = models.DateTimeField()
-    hours = models.DecimalField()
+    hours = models.DecimalField(decimal_places=2, max_digits=4)
     description = models.TextField()
 
     

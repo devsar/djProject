@@ -19,11 +19,11 @@ class Project(models.Model):
     creator = models.ForeignKey(User)
     name = models.CharField(max_length=32)
     since = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(choices=PROJECT_STATUS)
+    status = models.CharField(choices=PROJECT_STATUS, max_length=12)
     feed = models.URLField(max_length=512)
 
 class Member(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
-    role = models.CharField(choices=USER_ROLES)
+    role = models.CharField(choices=USER_ROLES, max_length=12)
 

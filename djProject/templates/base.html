@@ -12,13 +12,10 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">	
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
-
-	
-	
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+		
 	<script src="{{ STATIC_URL }}js/libs/modernizr-2.0.min.js"></script>
 	{% block head_extra %}
 	{% endblock %}
@@ -30,16 +27,16 @@
 	{% block header %}
 	<div id="top-bar" class="yui3-g">
         <div class="yui3-u-3-4">
-        <div id="top-logo">djProject</div>
+        	<div id="top-logo">djProject</div>
         </div>
         <div class="yui3-u-1-4">
-        <div id="top-auth-box">
-        {% if user.is_authenticated %}
-        <a href="">settings</a> | <a href="">logout</a>
-        {% else %}
- 		<a href="">login</a> | <a href="{% url nest_signup %}">sign up</a>
- 		{% endif %}
- 		</div>
+	        <div id="top-auth-box">
+	        {% if user.is_authenticated %}
+	        <a href="">settings</a> | <a href="{% url nest_logout %}">logout</a>
+	        {% else %}
+	 		<a href="{% url nest_login %}">login</a> | <a href="{% url nest_signup %}">sign up</a>
+	 		{% endif %}
+	 		</div>
         </div>
     </div>
 	{% endblock %}
@@ -63,7 +60,21 @@
 <script>
 var API_URL = '/api/v1/';
 </script>
-<script src="{{ STATIC_URL }}js/app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/soyutils.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/templates.js"></script>
+<script src="http://js.pusherapp.com/1.8/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+// Enable pusher logging - don't include this in production
+Pusher.log = function(message) {
+    if (window.console && window.console.log) window.console.log(message);
+};
+   	
+// Flash fallback logging - don't include this in production
+{% if debug %}
+WEB_SOCKET_DEBUG = true;
+{% endif %} 
+</script> 
 {% block footer_js %}
 {% endblock %}
 <script>
@@ -77,6 +88,9 @@ var API_URL = '/api/v1/';
 	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
 	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
-
+<script>
+      TASK_API = "{%url api_dispatch_list resource_name="task"%}";
+      PROJECT_API = "{%url api_dispatch_list resource_name="project"%}";
+</script>
 </body>
 </html>

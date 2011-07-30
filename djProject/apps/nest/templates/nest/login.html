@@ -9,10 +9,16 @@
 {% endblock %}
 
 {% block main %}
-<form id="nest_signup" action="{% url nest_signup %}" method="POST" class="uniForm">
-	{{ form|as_uni_form }}
-	{% csrf_token %}
-	<input type="submit" name="submit" value="Submit" class="submit submitButton" id="submit-id-submit">
+<form id="nest_login" action="{% url nest_login %}" method="POST" class="uniForm">
+    {% comment %}
+    {% uni_form form form.helper %}
+    {% endcomment %}
+    {{ form|as_uni_form }}
+    {% csrf_token %}
+    <center>
+    <input type="hidden" name="next" value="{{ next }}">
+    <input type="submit" name="submit" value="Log In" class="submit submitButton" id="submit-id-submit">
+    </center>
 </form>
 {% endblock %}
 

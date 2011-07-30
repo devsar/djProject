@@ -27,12 +27,17 @@
 	{% block header %}
 	<div id="top-bar" class="yui3-g">
         <div class="yui3-u-3-4">
-        	<div id="top-logo">djProject</div>
+        	<div id="top-logo">
+	        	<a class="header_link" href="{% url nest_home %}">djProject</a>
+	        	{% if user.is_authenticated %}
+	        	| {{ user.username }} is in.
+	        	{% endif %}
+        	</div>
         </div>
         <div class="yui3-u-1-4">
 	        <div id="top-auth-box">
 	        {% if user.is_authenticated %}
-	        <a href="">settings</a> | <a href="{% url nest_logout %}">logout</a>
+	        <a href="{% url nest_user_profile %}">settings</a> | <a href="{% url nest_logout %}">logout</a>
 	        {% else %}
 	 		<a href="{% url nest_login %}">login</a> | <a href="{% url nest_signup %}">sign up</a>
 	 		{% endif %}

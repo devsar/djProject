@@ -14,6 +14,10 @@
 	letter-spacing: 0em;
 	word-spacing: 0em;
 }
+
+.header_link {
+	text-decoration:none;
+}
 	
 #top-bar a {
 	color: #FFF;
@@ -40,7 +44,7 @@
 
 /** Sign Up & Log In **/
 
-#nest_signup, #nest_login {
+#nest_signup, #nest_login, #nest_user_profile {
 	margin: 10% auto;
 	width: 30%;
 	color: #EEE;

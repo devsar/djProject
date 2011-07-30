@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 
-from nest.forms import SignUpForm
+
+from nest.forms import SignUpForm, UserForm
 
 def home(request):
     return TemplateResponse(request, 'index.html', {})
@@ -20,3 +23,23 @@ def signup(request):
         'form':form,
     }
     return TemplateResponse(request, 'nest/signup.html', data)
+
+
+@login_required
+def profile(request):
+    user = request.user
+    
+    #form = UserForm(request.POST or None, instance=user)
+    form = UserForm(instance=user)
+    if request.method == 'POST':
+        u = User.objects.get(username = request.user.username)
+        form = UserForm(request.POST, instance=u)
+        if form.is_valid():
+            form.save()
+            return redirect('nest_home')
+    
+    data = {
+        'form':form,
+    }
+    
+    return TemplateResponse(request, 'nest/settings.html', data)

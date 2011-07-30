@@ -9,6 +9,9 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'djProject.views.home', name='home'),
     url(r'^', include('nest.urls')),
+    url(r'^projects/', include('projects.urls')),
+    url(r'^sprints/', include('sprints.urls')),
+    url(r'^tasks/', include('tasks.urls')),
 
 
     # Uncomment the next line to enable the admin:

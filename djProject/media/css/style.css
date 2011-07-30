@@ -40,3 +40,19 @@
 	color: #EEE;
 	background-color: black;
 }
+
+/** Projects **/
+#projects-menu {
+	float: right;
+}
+
+body.projects .column {
+	margin: 10px auto;
+	width: 95%;
+	box-shadow: 0px 0px 2px gray;
+}
+
+body.projects h2 {
+	text-align: center;
+}
+

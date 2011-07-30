@@ -38,21 +38,35 @@
 	color: #EEE;
 }
 
+/** Sign Up & Log In **/
+
 #nest_signup {
-	position: absolute;
-	top: 20%;
-	left: 40%;
-	width: 20%;
+	margin: 10% auto;
+	width: 30%;
 	color: #EEE;
 	background-color: black;
 }
 
-#nest_signup .error {
+#nest_signup > .error {
+	margin: 4px 4px;
 	color: #EEE;
 	background-color: red;
 }
-#nest_signup .buttonHolder {
-	background-color: black;	
+
+#nest_signup > .buttonHolder {
+	background-color: black;
+	margin: 4px 4px;
+	text-align: center;
+}
+
+.submitButton {
+	background-color: #EEE;
+	font-size: 1.5em;
+	border: 1px solid black;
+	padding: 4px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-top: 1px solid #660;
 }
 
 /** Projects **/

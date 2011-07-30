@@ -70,5 +70,9 @@ class SignUpForm(forms.ModelForm):
         #helper.form_class = ''
         #helper.form_id = 'nest_signup'
         return helper
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User   
         
     

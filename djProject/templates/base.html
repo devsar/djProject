@@ -60,7 +60,9 @@
 <script>
 var API_URL = '/api/v1/';
 </script>
-<script src="{{ STATIC_URL }}js/app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/soyutils.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/templates.js"></script>
 {% block footer_js %}
 {% endblock %}
 <script>
@@ -74,6 +76,9 @@ var API_URL = '/api/v1/';
 	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
 	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
-
+<script>
+      TASK_API = "{%url api_dispatch_list resource_name="task"%}";
+      PROJECT_API = "{%url api_dispatch_list resource_name="project"%}";
+</script>
 </body>
 </html>

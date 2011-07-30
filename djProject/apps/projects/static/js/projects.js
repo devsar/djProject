@@ -25,7 +25,7 @@ $(function(){
     },
 
       render: function() {
-          $(this.el).html(djProject.templates.projectTemplate(this.model.toJSON()));
+          $(this.el).html(djProject.templates.projectTemplate({project: this.model.toJSON()}));
           return this;
       }
     });
@@ -40,7 +40,7 @@ $(function(){
           window.tasks.bind('all', this.render, this);          
           window.tasks.fetch();
           
-          window.projects = new window.Project();
+          window.projects = new window.Projects();
           window.projects.bind('refresh', this.addProjects, this);          
           window.projects.bind('all', this.render, this);
           window.projects.fetch();

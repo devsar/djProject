@@ -13,7 +13,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
 	
 	<script src="js/libs/modernizr-2.0.min.js"></script>
 	{% block head_extra %}
@@ -24,12 +25,28 @@
 <div id="container">
 	<header>
 	{% block header %}
+	<div id="top-bar" class="yui3-g">
+        <div class="yui3-u-3-4">
+        <div id="top-logo">djProject</div>
+        </div>
+        <div class="yui3-u-1-4">
+        <div id="top-auth-box">
+        {% if user.is_authenticated %}
+        <a href="">settings</a> | <a href="">logout</a>
+        {% else %}
+ 		<a href="">login</a> | <a href="">sign up</a>
+ 		{% endif %}
+ 		</div>
+        </div>
+    </div>
 	{% endblock %}
 	</header>
-	<div id="main" role="main">
+	{% block main_outer %}
+	<div id="main" role="main" class="yui3-g">
 	{% block main %}
 	{% endblock %}
 	</div>
+	{% endblock %}
 	<footer>
 	{% block footer %}
 	{% endblock %}

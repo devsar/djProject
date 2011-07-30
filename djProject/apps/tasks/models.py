@@ -17,20 +17,20 @@ PRIORITY_CHOICES = (
     
 )
 
-class Task:
+class Task(models.Model):
+    parent = models.ForeignKey('self')
+    sprint = models.ForeignKey(Sprint, null=True, blank=True)
+    owner = models.ForeignKey(User)
     label = models.CharField(max_length=255)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
-    owner = models.ForeignKey(User)
-    spend = models.FloatField(default=0)
-    parent = models.ForeignKey('self')
+    spend = models.DecimalField(decimal_places=2, max_digits=4)
     priority = models.CharField(max_length=2, choices=PRIORITY_CHOICES)
-    sprint = models.ForeignKey(Sprint, null=True, blank=True)
     
-class Tag:
+class Tag(models.Model):
     label = models.CharField(max_length=255)
     task = models.ForeignKey(Task)
     
-class Log:
+class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     task = models.ForeignKey(Task)

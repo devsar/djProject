@@ -1,3 +1,5 @@
 env
 .gondor
 *.pyc
+.project
+.pydevproject

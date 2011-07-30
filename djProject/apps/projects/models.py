@@ -23,7 +23,7 @@ class Project(models.Model):
     name = models.CharField(max_length=32)
     since = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=PROJECT_STATUS, max_length=12)
-    feed = models.URLField(max_length=512)
+    feed = models.URLField(max_length=512, null=True, blank=True)
     
     #TODO: transaction here
     def new(self, creator, name):
@@ -47,6 +47,7 @@ class Project(models.Model):
         
         return self
         
+    
 
 class Member(models.Model):
     user = models.ForeignKey(User)

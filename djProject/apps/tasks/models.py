@@ -19,9 +19,9 @@ PRIORITY_CHOICES = (
 
 class Task(models.Model):
     project = models.ForeignKey(Project)
+    parent = models.ForeignKey('self', null=True, blank=True)
     sprint = models.ForeignKey(Sprint, null=True, blank=True)
     owner = models.ForeignKey(User, null=True, blank=True)
-    parent = models.ForeignKey('self', null=True, blank=True)
     description = models.TextField(max_length=255)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     estimated = models.DecimalField(decimal_places=2, max_digits=4, null=True, blank=True)

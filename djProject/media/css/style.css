@@ -1,4 +1,6 @@
 @import url("boiler.css");
+@import url("../uni_form/uni-form.css");
+
 
 #top-bar {
 	min-width: 960px;
@@ -8,6 +10,9 @@
 	height: 30px;
 	border-bottom: 1px solid black;
 }
+
+
+
 
 #top-bar a {
 	color: #FFF;
@@ -22,6 +27,8 @@
 	margin-left: 40px;
 }
 
+
+
 #main h1.logo {
 	position: absolute;
 	text-align: center;
@@ -31,6 +38,25 @@
 	text-shadow: 5px 5px 5px #666;
 	color: #EEE;
 }
+
+#nest_signup {
+	position: absolute;
+	top: 20%;
+	left: 40%;
+	width: 20%;
+	color: #EEE;
+	background-color: black;
+}
+
+#nest_signup .error {
+	color: #EEE;
+	background-color: red;
+}
+#nest_signup .buttonHolder {
+	background-color: black;	
+}
+
+
 
 /** Projects **/
 #projects-menu {
@@ -46,3 +72,4 @@ body.projects .column {
 body.projects h2 {
 	text-align: center;
 }
+

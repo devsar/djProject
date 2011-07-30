@@ -123,12 +123,13 @@ INSTALLED_APPS = (
     
     #third party
     'south',
-
+    'uni_form',
     #djProject
     'api',
     'projects',
     'sprints',
     'tasks',
+    'nest',
 )
 
 # A sample logging configuration. The only tangible logging

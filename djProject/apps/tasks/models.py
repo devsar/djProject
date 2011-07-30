@@ -18,7 +18,7 @@ PRIORITY_CHOICES = (
 )
 
 class Task(models.Model):
-    parent = models.ForeignKey('self')
+    parent = models.ForeignKey('self', null=True, blank=True)
     sprint = models.ForeignKey(Sprint, null=True, blank=True)
     owner = models.ForeignKey(User)
     label = models.CharField(max_length=255)

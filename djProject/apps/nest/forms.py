@@ -53,6 +53,30 @@ class SignUpForm(forms.ModelForm):
             user.save()
         return user
     
+#    @property
+#    def helper(self):
+#        """ We call this as a method/property so we don't make the form helper a singleton. """
+#        # instantiate the form helper object
+#        helper = helpers.FormHelper()
+#
+#        # add in some input controls (a.k.a. buttons)
+#        submit = helpers.Submit('submit','Submit')
+#        helper.add_input(submit)
+#
+#        # define the form action
+#        helper.form_action = reverse('nest_signup')
+#        helper.form_method = 'POST'
+#        #helper.form_class = ''
+#        #helper.form_id = 'nest_signup'
+#        return helper
+
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(label=_("Username"))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput) 
+    class Meta:
+        model = User
+        fields = ('username','password')   
+        
     @property
     def helper(self):
         """ We call this as a method/property so we don't make the form helper a singleton. """
@@ -61,14 +85,12 @@ class SignUpForm(forms.ModelForm):
         helper = helpers.FormHelper()
 
         # add in some input controls (a.k.a. buttons)
-        submit = helpers.Submit('submit','Submit')
+        submit = helpers.Submit('submit','Log In')
         helper.add_input(submit)
 
         # define the form action
-        helper.form_action = reverse('nest_signup')
+        helper.form_action = reverse('nest_login')
         helper.form_method = 'POST'
         #helper.form_class = ''
         #helper.form_id = 'nest_signup'
-        return helper
-        
-    
+        return helper    

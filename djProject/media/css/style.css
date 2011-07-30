@@ -10,10 +10,11 @@
 	height: 30px;
 	border-bottom: 1px solid black;
 }
-
-
-
-
+.yui3-g *{
+	letter-spacing: 0em;
+	word-spacing: 0em;
+}
+	
 #top-bar a {
 	color: #FFF;
 }
@@ -27,8 +28,6 @@
 	margin-left: 40px;
 }
 
-
-
 #main h1.logo {
 	position: absolute;
 	text-align: center;
@@ -41,23 +40,26 @@
 
 /** Sign Up & Log In **/
 
-#nest_signup {
+#nest_signup, #nest_login {
 	margin: 10% auto;
 	width: 30%;
 	color: #EEE;
 	background-color: black;
 }
 
+#nest_signup, #nest_login > .buttonHolder {
+	background-color: black;
+	text-align: center;
+}
+
 #nest_signup > .error {
-	margin: 4px 4px;
 	color: #EEE;
 	background-color: red;
 }
 
-#nest_signup > .buttonHolder {
-	background-color: black;
-	margin: 4px 4px;
-	text-align: center;
+#nest_login > .error {
+	color: #EEE;
+	background-color: red;
 }
 
 .submitButton {
@@ -65,12 +67,12 @@
 	font-size: 1.5em;
 	border: 1px solid black;
 	padding: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-top: 1px solid #660;
 }
-
-
 
 /** Projects **/
 #projects-menu {

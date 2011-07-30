@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
+
+from uni_form import helpers
 
 from nest.forms import SignUpForm 
 
@@ -9,7 +13,8 @@ def home(request):
 
 def signup(request):
     data = {}
-    form = SignUpForm()
+    form = SignUpForm()        
+    
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -19,8 +24,9 @@ def signup(request):
             except User.DoesNotExist:
                 #username free, its ok to create
                 form.save()
+            return redirect("nest_home") 
     
-    data.update(
-        {'form':form}
-    )
+    data.update({
+        'form':form,
+    })
     return TemplateResponse(request, 'nest/signup.html', data)

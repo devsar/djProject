@@ -1,6 +1,11 @@
 @import url("boiler.css");
 @import url("../uni_form/uni-form.css");
 
+#container .yui3-g {
+	letter-spacing: 0.05em;
+	word-spacing: 0em;
+}
+
 #top-bar {
 	min-width: 960px;
 	background-color: #2D2D2D;
@@ -35,10 +40,19 @@
 
 #nest_signup {
 	position: absolute;
-	top: 35%;
-	width: 100%;
+	top: 20%;
+	left: 40%;
+	width: 20%;
 	color: #EEE;
 	background-color: black;
+}
+
+#nest_signup .error {
+	color: #EEE;
+	background-color: red;
+}
+#nest_signup .buttonHolder {
+	background-color: black;	
 }
 
 /** Projects **/

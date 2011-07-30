@@ -23,7 +23,7 @@ $(function(){
     });
 
     window.Tasks = Backbone.Collection.extend({
-      url: TASKS_API,
+      url: API_URL + "task/",
 
       parse: function(data){
           return data.objects;
@@ -36,8 +36,8 @@ $(function(){
       }
     });
 
-    window.Projectss = Backbone.Collection.extend({
-      url: PROJECTS_API,
+    window.Projects = Backbone.Collection.extend({
+      url: API_URL + "project/",
 
       parse: function(data){
           return data.objects;

@@ -2,17 +2,35 @@
 
 /**
  * Render Task
- * @param task the task.
+ * @param has_parent if the task has task.
+ * @param owner the owner task.
+ * @param description the description.
+ * @param status the status task.
+ * @param estimated the estimated task.
+ * @param spend the spend task.
+ * @param remaining the remaining task.
+ * @param priority the priority task.
  */
 {template .taskTemplate}
- <div>{$task.description}</div>
+
+<div class="task{if $has_parent } child{/if}"> 
+	<div class="description">{$description}</div>
+	<div class="owner">{$owner}</div>
+	<div class="description">{$description}</div>
+	<div class="status">{$status}</div>
+	<div class="estimated"><input type="text" name="estimated" value="{$estimated}"/></div>
+	<div class="spend"><input type="text" name="spend" value="{$spend}"/></div>
+	<div class="remaining">{$remaining}</div>
+	<div class="priority">{$priority}</div>
+</div>
+ 
 {/template}
 
 
 /**
  * Render Project
- * @param project the task.
+ * @param name the name project.
  */
 {template .projectTemplate}
- <div>{$project.name}</div>
+ <div>{$name}</div>
 {/template}

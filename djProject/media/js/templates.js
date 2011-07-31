@@ -14,7 +14,7 @@ djProject.templates.tasksTableHeader = function(opt_data, opt_sb) {
 
 djProject.templates.taskTemplate = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div class="tc id">', soy.$$escapeHtml(opt_data.task.id), '</div><div class="tc description">', soy.$$escapeHtml(opt_data.task.description), '</div><div class="tc owner">', soy.$$escapeHtml(opt_data.task.owner ? opt_data.task.owner : '--'), '</div><div class="tc status">', soy.$$escapeHtml(opt_data.task.status), '</div><div class="tc estimated">', soy.$$escapeHtml(opt_data.task.estimated ? opt_data.task.estimated : '--'), '</div><div class="tc remaining">', soy.$$escapeHtml(opt_data.task.remaining ? opt_data.task.remaining : '--'), '</div><div id="task-more-', soy.$$escapeHtml(opt_data.task.id), '" data-id="', soy.$$escapeHtml(opt_data.task.id), '" class="tc task-details"><a href="#">-></a></div>');
+  output.append('<div class="tc id task-details"><a href="#">', soy.$$escapeHtml(opt_data.task.id), '</a></div><div class="tc description">', soy.$$escapeHtml(opt_data.task.description), '</div><div class="tc owner">', soy.$$escapeHtml(opt_data.task.owner ? opt_data.task.owner : '--'), '</div><div class="tc status">', soy.$$escapeHtml(opt_data.task.status), '</div><div class="tc estimated">', soy.$$escapeHtml(opt_data.task.estimated ? opt_data.task.estimated : '--'), '</div><div class="tc remaining">', soy.$$escapeHtml(opt_data.task.remaining ? opt_data.task.remaining : '--'), '</div><div id="task-more-', soy.$$escapeHtml(opt_data.task.id), '" data-id="', soy.$$escapeHtml(opt_data.task.id), '" class="tc task-details"><a href="#">-></a></div>');
   if (!opt_sb) return output.toString();
 };
 
@@ -36,5 +36,12 @@ djProject.templates.projectTemplate = function(opt_data, opt_sb) {
 djProject.templates.taskDetailsTemplate = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
   output.append('<h2>Task Details</h2><dl><dt>Id:</dt> <dl class="id">', soy.$$escapeHtml(opt_data.task.id), '</dd><dt>Owner</dt><dd class="owner">', soy.$$escapeHtml(opt_data.task.owner ? opt_data.task.owner : '--'), '</dd><dt>Status</dt><dd class="status">', soy.$$escapeHtml(opt_data.task.status), '</dd><dt>Estimated</dt><dd class="estimated">', soy.$$escapeHtml(opt_data.task.estimated ? opt_data.task.estimated : '--'), '</dd><dt>Spend</dt><dd class="spend">', soy.$$escapeHtml(opt_data.task.spend ? opt_data.task.spend : '--'), '</dd><dt>Remaining</dt><dd class="remaining">', soy.$$escapeHtml(opt_data.task.remaining ? opt_data.task.remaining : '--'), '</dd><dt>Priority</dt><dd class="priority">', soy.$$escapeHtml(opt_data.task.priority ? opt_data.task.priority : '--'), '</dd></dl><h2>Description</h2><p class="description">', soy.$$escapeHtml(opt_data.task.description), '</p><h2>Comments</h2><ul id="comments-list">no comments</ul><div id="create-comment"><input id="new-comment" placeholder="Something to say?" type="text"></div>');
+  if (!opt_sb) return output.toString();
+};
+
+
+djProject.templates.commentTemplate = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<p class="comment">', soy.$$escapeHtml(opt_data.comment.comment), '</p><span class="username">by ', soy.$$escapeHtml(opt_data.comment.username), '</span>');
   if (!opt_sb) return output.toString();
 };

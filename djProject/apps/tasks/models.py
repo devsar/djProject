@@ -56,7 +56,9 @@ class Task(models.Model):
                 })
         except:
             logging.exception("error notifying")
-    
+            
+    def __unicode__(self):
+        return u"%s" % self.id
     
     
 class Tag(models.Model):
@@ -76,3 +78,19 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 
+    def save(self, *args , ** kwargs ):
+        if self.id is None:
+            message = 'comment_created'
+        else:
+            message = 'comment_updated'
+            
+        super(Comment, self).save(* args, ** kwargs)
+            
+        try:
+            p = get_pusher()
+            for member in self.task.project.member_set.all():
+                p[member.user.username].trigger(message, {
+                    'comment':  {'user': self.user.id, 'comment': self.comment, 'task': self.task.id}
+                })
+        except:
+            logging.exception("error notifying")

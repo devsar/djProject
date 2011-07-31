@@ -14,8 +14,8 @@ $(function(){
 	  },
 
 	  showDetails: function(e) {
-		  var task = this.model.toJSON();
-          $("#projects-side").html(djProject.templates.taskDetailsTemplate({task: task}));
+          var view = new TaskDetailsView({model: this.model});
+          $("#projects-side").html(view.render().el);
 	  },
 	  
       render: function(){
@@ -26,7 +26,22 @@ $(function(){
           return this;
       }
     });
-    
+
+    window.CommentView = Backbone.View.extend({
+        tagName: 'li',
+        className: 'comment',
+
+        initialize: function() {
+  	      this.model.bind('change', this.render, this);
+  	      this.model.view = this;
+  	    },
+
+        render: function(){
+      	  var comment = this.model.toJSON();
+          $(this.el).html(djProject.templates.commentTemplate({comment: comment}));
+          return this;
+        }
+    });
     
     window.TaskDetailsView = Backbone.View.extend({
         tagName: 'div',
@@ -35,14 +50,50 @@ $(function(){
         initialize: function() {
   	      this.model.bind('change', this.render, this);
   	      this.model.view = this;
+  	      
+    	  this.comments = new window.Comments({task: this.model});
+    	  this.comments.bind('refresh', this.addComments);
+    	  this.comments.view = this;
+    	  window.comments = this.comments;
+    	  
+  	  	},
+  	  	
+  	  	events: {
+          //"keypress #new-todo":  "createOnEnter",
+          //"keyup #new-todo":     "showTooltip",
+          "keypress #new-comment":  "createOnEnter"
   	  	},
 
+	  	addComments: function(){
+	  		  $('#comments-list').html('');
+	    	  this.each(this.view.addComment);
+	    },
+	
+	    addComment: function(comment){      	
+	          var view = new CommentView({model: comment});
+	          $('#comments-list').append(view.render().el);
+	    },
+  	  	
         render: function(){
-      	  var task = this.model.toJSON();
-      	  $(this.el).addClass('tr');
-      	  $(this.el).attr("id", "task-" + task.id);
-            $(this.el).html(djProject.templates.taskDetailsTemplate({task: task}));
+      	    var task = this.model;
+      	    $(this.el).addClass('tr');
+      	    $(this.el).attr("id", "task-" + task.get('id'));
+            $(this.el).html(djProject.templates.taskDetailsTemplate({task: task.toJSON()}));
+            //get comments 
+            this.comments.filtered(task);
             return this;
+        },      
+        
+        createOnEnter: function(e){
+      	    if (e.keyCode != 13) return;
+      	    comment =  {}
+          
+      	    comment['task'] = this.model.get('resource_uri'); 
+      	    comment['comment'] = $("#new-comment").val();
+      	    comment['user'] = USER_URI;
+      	    
+      	    this.comments.create(comment);
+      	    $("#new-comment").val('');
         }
     });
 

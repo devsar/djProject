@@ -2,13 +2,23 @@ from tastypie import fields
 
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
+from tastypie.authorization import DjangoAuthorization
+
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
+from django.contrib.auth.models import User
 from projects.models import Project
-from tasks.models import Task
+from tasks.models import Task, Comment
 from sprints.models import Sprint
 import logging
 from django.http import Http404, HttpResponseBadRequest
+
+class UserResource(ModelResource):
+    class Meta:
+        queryset = User.objects.all()
+        resource_name = 'user'
+        authorization = DjangoAuthorization()
+        excludes = ['email', 'password', 'is_staff', 'is_superuser']
 
 
 class ProjectResource(ModelResource):
@@ -70,8 +80,12 @@ class TaskResource(ModelResource):
         }
 
     def get_object_list(self, request):        
-        tasks = super(TaskResource, self).get_object_list(request)        
-        return tasks.filter(project__member__user=request.user)
+        tasks = super(TaskResource, self).get_object_list(request)
+        if request:        
+            return tasks.filter(project__member__user=request.user)
+        else:
+            #internal query
+            return tasks
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -97,3 +111,26 @@ class TaskResource(ModelResource):
         
         
         return orm_filters
+
+
+class CommentResource(ModelResource):
+    task = fields.ForeignKey(TaskResource, 'task')
+    user = fields.ForeignKey(UserResource, 'user')
+
+    class Meta:
+        queryset = Comment.objects.all()
+        resource_name = 'comment'
+        authorization = Authorization()
+        filtering = {
+            'task': ALL_WITH_RELATIONS,
+            'user': ALL_WITH_RELATIONS,
+        }
+
+    def get_object_list(self, request):
+        
+        comments = super(CommentResource, self).get_object_list(request)
+        if request:
+            return comments.filter(task__project__member__user=request.user)
+        else:
+            #internal query
+            return comments

@@ -183,6 +183,7 @@ $(function(){
     	  this.sprints = new window.Sprints({project: this.model});
     	  this.sprints.bind('refresh', this.addSprints);
     	  this.sprints.view = this;
+    	  this.model.sprints = this.sprints;
     	  //this.model.sprint.bind('all', this.render, this);    	  
       },
       

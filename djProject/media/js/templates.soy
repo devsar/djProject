@@ -75,15 +75,15 @@
  */
 {template .taskDetailsTemplate}
 <h2>Task Details</h2>
-<dl>
-<dt>Id:</dt> <dl class="id">{$task.id}</dd>
-<dt>Owner</dt><dd class="owner">{$task.owner ? $task.owner : '--'}</dd>
-<dt>Status</dt><dd class="status">{$task.status}</dd>
-<dt>Estimated</dt><dd class="estimated">{$task.estimated ? $task.estimated : '--'}</dd>
-<dt>Spend</dt><dd class="spend">{$task.spend ? $task.spend : '--'}</dd>
-<dt>Remaining</dt><dd class="remaining">{$task.remaining ? $task.remaining : '--'}</dd>
-<dt>Priority</dt><dd class="priority">{$task.priority ? $task.priority : '--'}</dd>
-</dl>
+<ul id="task_details">
+<li>Id: {$task.id}</li>
+<li>Owner: {$task.owner ? $task.owner : '--'}</li>
+<li>Status: {$task.status}</li>
+<li>Estimated: {$task.estimated ? $task.estimated : '--'}</li>
+<li>Spend: {$task.spend ? $task.spend : '--'}</li>
+<li>Remaining: {$task.remaining ? $task.remaining : '--'}</li>
+<li>Priority: {$task.priority ? $task.priority : '--'}</li>
+</ul>
 <h2>Description</h2>
 <p class="description">{$task.description}</p>
 <h2>Comments</h2>

@@ -232,7 +232,7 @@ div.tc.editing .content {
 	display: none;
 }
 
-.link_menu{
+.link_create{
 	text-decoration: none;
 	color: #777;
 	border-bottom: 1px solid #DDD;
@@ -240,7 +240,7 @@ div.tc.editing .content {
 	display: block;
 }
 
-a:hover.link_menu, #projects-list a:hover{
+a:hover.link_create, #projects-list a:hover{
 	background: #efefef;
 }
 
@@ -256,7 +256,7 @@ a:hover.link_menu, #projects-list a:hover{
 
 #projects-container a{
 	text-decoration: none;
-	padding: 5px;
+	padding: 2px 10px;
 }
 
 #projects-container .project{
@@ -273,4 +273,15 @@ a:hover.link_menu, #projects-list a:hover{
 
 .task dt, .task dl{
 	display: inline;
+}
+
+#task_details, .description{
+	padding: 10px;
+}
+
+
+	
+.edit input{
+	border: 1px solid #DDD;
+	padding: 2px;
 }

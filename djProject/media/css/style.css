@@ -6,6 +6,7 @@
 
 
 /* reset */
+*:focus { outline: none }
 body, sdiv,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 table{border-collapse:collapse;border-spacing:0;}
 fieldset,img{border:0;}
@@ -25,6 +26,10 @@ label{text-align: left;}
 
 body{
 	background: url(../img/back.png) repeat;
+}
+
+a, a:visited{
+	color: #555;
 }
 
 /* Common Classes */
@@ -156,36 +161,23 @@ body{
 	background-color: red;
 }
 
-/*
-.submitButton {
-	background-color: #EEE;
-	font-size: 1.5em;
-	border: 1px solid black;
-	padding: 4px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-top: 1px solid #660;
-}
-*/
-
 /** Projects **/
-#projects-menu {
-	float: right;
-}
 
 .column{
 	background: white;
-	box-shadow: 0px 0px 10px 5px #EEE;
+	box-shadow: 0px 0px 10px 0.5px #AAA;
 	border: solid 1px #DDD;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	min-height: 500px;
+	margin: 6px 2px;
 }
-	
-body.projects .column {
-	margin: 10px auto;
-	width: 95%;
+
+.column h2{
+	background: url(../img/back_title.png);
+	/*background: url(../img/back_header.png);
+	color: #fff;*/
+	border-bottom: 1px solid #ddd;
+	color: #555;
 }
 
 body.projects h2 {
@@ -225,4 +217,39 @@ li span.task div {
 	-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
 	-o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}
+
+.link_menu{
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px solid #DDD;
+	padding: 5px 10px;
+	display: block;
+}
+
+a:hover.link_menu, #projects-list a:hover{
+	background: #efefef;
+}
+
+#projects-container > li{
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px solid #DDD;
+	display: block;
+	margin-bottom: 10px;	
+	padding-bottom: 10px;	
+	margin-top: 5px;	
+}
+
+#projects-container a{
+	text-decoration: none;
+	padding: 5px;
+}
+
+#projects-container .project{
+	font-weight: bold;
+}
+
+#projects-list a{
+	display: block;
 }

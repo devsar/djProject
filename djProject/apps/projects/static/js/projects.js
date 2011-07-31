@@ -71,7 +71,7 @@ $(function(){
     
     window.ProjectView = Backbone.View.extend({
       tagName: 'li',
-      className: 'project',
+      classname: 'project',
 
       initialize: function() {
     	  this.model.bind('change', this.render, this);

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load uni_form_tags %}
+{% load i18n %}
 
 {% block head_extra %}
 <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" type="text/css" />
@@ -18,7 +19,7 @@
     <input type="hidden" name="next" value="{{ next }}">
     <div class="ctrlHolder ">
     <center>
-    <button type="submit" name="submit" class="awesome large">Log In</button>
+    <button type="submit" name="submit" class="awesome large">{% trans "Log In" %}</button>
     </center>
     </div>
 </form>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load uni_form_tags %}
+{% load i18n %}
 
 {% block head_extra %}
 <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" type="text/css" />
@@ -14,7 +15,7 @@
     {% csrf_token %}
     <div class="ctrlHolder ">
     <center>
-    <button type="submit" name="submit" class="awesome large">Confirm changes!</button>
+    <button type="submit" name="submit" class="awesome large">{% trans "Confirm changes!" %}</button>
     </center>
     </div>
 

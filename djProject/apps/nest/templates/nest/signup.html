@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load uni_form_tags %}
+{% load i18n %}
 
 {% block head_extra %}
 <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" type="text/css" />
@@ -15,7 +16,7 @@
 	
     <div class="ctrlHolder ">
     <center>
-    <button type="submit" name="submit" class="awesome large">Sign up</button>
+    <button type="submit" name="submit" class="awesome large">{% trans "Sign up" %}</button>
     </center>
     </div>
 

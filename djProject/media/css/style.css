@@ -275,7 +275,6 @@ a:hover.link_create, #projects-list a:hover{
 	display: block;
 }
 
-<<<<<<< HEAD:djProject/media/css/style.css
 .task dt, .task dl{
 	display: inline;
 }
@@ -285,12 +284,10 @@ a:hover.link_create, #projects-list a:hover{
 }
 
 
-	
 .edit input{
 	border: 1px solid #DDD;
 	padding: 2px;
-=======
+
 .tc .content:hover {
 	background: #FFFF99;
->>>>>>> bed52e40cf88b1a880318f9c8c46910bb49de3ef:djProject/media/css/style.css
 }

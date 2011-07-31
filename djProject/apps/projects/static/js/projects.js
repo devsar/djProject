@@ -11,12 +11,31 @@ $(function(){
 
       events: {
 	     "click div.task-details"   : "showDetails",
+	     "click div.description .content" : "editDescription",
+	     "keypress .description-input" : "updateDescription"
 	  },
-
+	  
 	  showDetails: function(e) {
           var view = new TaskDetailsView({model: this.model});
           $("#projects-side").html(view.render().el);
 	  },
+	  
+	  editDescription: function(e) {
+		  //alert("click");
+		  $("div.description", this.el).addClass("editing");
+		  input = $("input", $(this.el));
+		  input.val(this.model.get('description'));
+		  input.focus();
+
+	  },
+	  
+	  updateDescription: function(e) {
+		  if (e.keyCode != 13) return;
+		  $(".description", this.el).removeClass("editing");
+		  value = $("input", $(this.el)).val();
+		  this.model.save({"description": value});
+	  },
+	  
 	  
       render: function(){
     	  var task = this.model.toJSON();

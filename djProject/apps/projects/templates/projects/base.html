@@ -19,7 +19,7 @@
      <div id="projects-list" class="column">
      <h2>{% trans "Projects"%}</h2>
      	<div id="projects-container">
-     		
+     		{% comment %}
      		{% for member in membership %}
      			{% with member.project as project %}
      			<div >
@@ -35,7 +35,7 @@
      			</div>
      			{% endwith %}
      		{% endfor %}
-     		
+     		{% endcomment %}
      	</div>
      </div>
 </div>

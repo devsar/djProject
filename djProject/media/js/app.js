@@ -52,9 +52,16 @@ $(function(){
     window.Sprints = Backbone.Collection.extend({
         url: SPRINT_API,
   	  	model: window.Sprint,
-        parse: function(data){
+  	  	project: null,
+  	  	
+  	  	initialize: function(options) {
+  	  		if (options.project) {
+  	  			this.url = SPRINT_API + "?project=" + options.project.get('id');
+  	  		}
+  	  	},
+        parse: function(data) {
             return data.objects;
-      }
+        }
     });
     
     window.Project = Backbone.Model.extend({

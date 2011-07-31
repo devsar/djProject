@@ -1,3 +1,4 @@
+from tastypie import fields
 
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
@@ -20,14 +21,28 @@ class ProjectResource(ModelResource):
         return projects.filter(member__user=request.user)
 
 class SprintResource(ModelResource):
+    project_uri = fields.ToOneField(ProjectResource, 'project')
     class Meta:
         queryset = Sprint.objects.all()
         resource_name = 'sprint'
         authorization = Authorization()
+        fields = ['id', 'project__id', 'name', 'start_date', 'end_date']
 
     def get_object_list(self, request):
-        sprints = super(Sprint, self).get_object_list(request)        
+        sprints = super(SprintResource, self).get_object_list(request)        
         return sprints.filter(project__member__user=request.user)
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(SprintResource, self).build_filters(filters)
+
+        if "project" in filters:
+            orm_filters["project__id"] = filters['project']
+        
+        return orm_filters
+
 
 class TaskResource(ModelResource):
     class Meta:

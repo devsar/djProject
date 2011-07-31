@@ -17,18 +17,49 @@ $(function(){
           return this;
       }
     });
+
+    window.SprintView = Backbone.View.extend({
+        tagName: 'li',
+        className: 'sprint',
+
+	    initialize: function() {
+	        this.model.bind('change', this.render, this);
+	        this.model.view = this;
+	    },
+
+        render: function() {
+            $(this.el).html(djProject.templates.sprintTemplate({sprint: this.model.toJSON()}));
+            return this;
+        }
+      });
     
     window.ProjectView = Backbone.View.extend({
       tagName: 'li',
       className: 'project',
 
-	initialize: function() {
-      this.model.bind('change', this.render, this);
-      this.model.view = this;
-    },
+      initialize: function() {
+    	  this.model.bind('change', this.render, this);
+    	  this.model.view = this;
+    	  this.sprints = new window.Sprints({project: this.model});
+    	  this.sprints.bind('refresh', this.addSprints);
+    	  this.sprints.view = this;
+    	  //this.model.sprint.bind('all', this.render, this);
+          
+      },
 
+      addSprints: function(){
+    	  $(this.view.el).filter('.project-sprints').html('');
+    	  this.each(this.view.addSprint);
+      },
+
+      addSprint: function(sprint){      	
+          var view = new SprintView({model: sprint});
+          $('ul[data-uri="'+sprint.get('project_uri')+'"]').append(view.render().el);
+      },
+      
       render: function() {
           $(this.el).html(djProject.templates.projectTemplate({project: this.model.toJSON()}));
+          this.sprints.fetch();
           return this;
       }
     });
@@ -42,12 +73,12 @@ $(function(){
           window.tasks.bind('refresh', this.addTasks, this);          
           window.tasks.bind('all', this.render, this);          
           window.tasks.fetch();
-          /*
+
           window.projects = new window.Projects();
           window.projects.bind('refresh', this.addProjects, this);          
           window.projects.bind('all', this.render, this);
           window.projects.fetch();
-          */
+          
       },
       
       events: {
@@ -73,7 +104,7 @@ $(function(){
       addProject: function(project){      	
           var view = new ProjectView({model: project});
           this.$('#projects-container').prepend(view.render().el);
-      },
+      }
 
     });
       

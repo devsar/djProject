@@ -15,6 +15,15 @@
 	<div style="" class="tc"></div>
 </div>
 {/template}
+
+/**
+ * Render Sprint
+ * @param sprint render sprint.
+ */
+{template .sprintTemplate}
+<div class="sprint" data-sprint="{$sprint.id}" data-project="{$sprint.project}">{$sprint.name}</div>
+{/template}
+
 /**
  * Render Task
  * @param task the owner task.
@@ -38,4 +47,5 @@
  */
 {template .projectTemplate}
 <div id="project-{$project.id}">{$project.name}</div>
+<ul class="project-sprints" data-uri="{$project.resource_uri}"></ul>
 {/template}

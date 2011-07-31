@@ -4,14 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 
-
 from nest.forms import SignUpForm, UserForm
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
 
 def home(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse("projects_main"))
+        return redirect('projects_main')
     return TemplateResponse(request, 'index.html', {})
 
 def signup(request):

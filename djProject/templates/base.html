@@ -19,7 +19,7 @@
 	{% endblock %}
 </head>
 <body class="yui3-skin-sam {% block body_class %}{% endblock %}">
-
+{% block super_main %}
 <div id="container">
 	<header>
 	{% block header %}
@@ -97,5 +97,7 @@ WEB_SOCKET_DEBUG = true;
       SPRINT_API = "{%url api_dispatch_list resource_name="sprint"%}";
       PROJECT_API = "{%url api_dispatch_list resource_name="project"%}";
 </script>
+
+{% endblock %}
 </body>
 </html>

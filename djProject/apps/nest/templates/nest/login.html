@@ -9,16 +9,18 @@
 {% endblock %}
 
 {% block main %}
-<form id="nest_login" action="{% url nest_login %}" method="POST" class="uniForm">
+<form id="nest_login" action="{% url nest_login %}" method="POST" class="uniForm" id="login_form">
     {% comment %}
     {% uni_form form form.helper %}
     {% endcomment %}
     {{ form|as_uni_form }}
     {% csrf_token %}
-    <center>
     <input type="hidden" name="next" value="{{ next }}">
-    <input type="submit" name="submit" value="Log In" class="submit submitButton" id="submit-id-submit">
+    <div class="ctrlHolder ">
+    <center>
+    <button type="submit" name="submit" class="awesome large">Log In</button>
     </center>
+    </div>
 </form>
 {% endblock %}
 

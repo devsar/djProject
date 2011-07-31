@@ -96,6 +96,7 @@ $(function(){
         render: function(){
       	    var task = this.model;
       	    $(this.el).addClass('tr');
+      	    $(this.el).addClass('task');
       	    $(this.el).attr("id", "task-" + task.get('id'));
             $(this.el).html(djProject.templates.taskDetailsTemplate({task: task.toJSON()}));
             //get comments 
@@ -141,7 +142,7 @@ $(function(){
     
     window.ProjectView = Backbone.View.extend({
       tagName: 'li',
-      className: 'project',
+      classname: 'project',
 
       initialize: function() {
     	  this.model.bind('change', this.render, this);

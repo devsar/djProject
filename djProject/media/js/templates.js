@@ -28,7 +28,7 @@ djProject.templates.sprintTemplate = function(opt_data, opt_sb) {
 
 djProject.templates.projectTemplate = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div id="project-', soy.$$escapeHtml(opt_data.project.id), '" class="project"><a href="#">', soy.$$escapeHtml(opt_data.project.name), '</a></div><ul class="project-sprints" data-uri="', soy.$$escapeHtml(opt_data.project.resource_uri), '"><div class="backlog"><a href="#">backlog</a></ul>');
+  output.append('<div id="project-', soy.$$escapeHtml(opt_data.project.id), '" class="project"><a href="#">', soy.$$escapeHtml(opt_data.project.name), '</a></div><ul class="project-sprints" data-uri="', soy.$$escapeHtml(opt_data.project.resource_uri), '"><div class="backlog"><a href="#">backlog</a></ul><a class="sprint-create" class="cboxElement" href="/projects/sprint/', soy.$$escapeHtml(opt_data.project.id), '/" title="">Create Sprint</a>');
   if (!opt_sb) return output.toString();
 };
 

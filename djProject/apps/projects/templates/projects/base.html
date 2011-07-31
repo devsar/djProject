@@ -56,16 +56,30 @@
 
 
 {% block footer_js %}
+<script src="http://js.pusherapp.com/1.8/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+// Enable pusher logging - don't include this in production
+Pusher.log = function(message) {
+    if (window.console && window.console.log) window.console.log(message);
+};
+   	
+// Flash fallback logging - don't include this in production
+{% if debug %}
+WEB_SOCKET_DEBUG = true;
+{% endif %} 
+</script> 
+
 <script src="{{ STATIC_URL }}js/projects.js"></script>
 <script type="text/javascript">
 var pusher = new Pusher('93d0509ce62dd993b05a');
 var channel = pusher.subscribe('{{ user.username }}');
 channel.bind('task_created', function(data) {
+	alert('hola');
 	window.app.addTask(new window.Task({task: data.task}));
 }); 
 channel.bind('task_updated', function(data) {
-	var task = window.tasks.get(data.task.id);
-	task.fetch();
+	//var task = window.tasks.get(data.task.id);
+	window.tasks.fetch();
 });
 </script>
 {% endblock %}

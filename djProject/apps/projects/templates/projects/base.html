@@ -19,23 +19,6 @@
      <div id="projects-list" class="column">
      <h2>{% trans "Projects"%}</h2>
      	<div id="projects-container">
-     		{% comment %}
-     		{% for member in membership %}
-     			{% with member.project as project %}
-     			<div >
-     				<span class="project-link" data-project="{{ project.id }}"><a href="#">{{ project.name }}</a></span>
-     				<ul>
-     					{% for sprint in project.sprint_set.all %}
-	     					<li>
-	     						<a href="">{{ sprint.name }}</a>
-	     					</li>
-	     				{% endfor %}
-	     					<li><a href="">{% trans "Backlog" %}</a></li>
-     				</ul>
-     			</div>
-     			{% endwith %}
-     		{% endfor %}
-     		{% endcomment %}
      	</div>
      </div>
 </div>

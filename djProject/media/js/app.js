@@ -30,15 +30,15 @@ $(function(){
           return data.objects;
       },
       filtered: function(project_id, sprint_id) {
+    	  var data = {};
     	  if (project_id) {
-    		  url = TASK_API + "?project=" + project_id;
-        	  if (sprint_id) { 
-        		  url = "&sprint=" + sprint_id;
-        	  }
-        	  this.url = url;
-    	  } else {
-    		  this.url = TASK_API;
+    		  data['project'] = project_id;
     	  }
+    	  if (sprint_id) {
+    		  data['sprint'] = sprint_id;
+    	  }
+    	  this.url = TASK_API + "?" + $.param(data)
+    	  
           return this.fetch();
       },
     });

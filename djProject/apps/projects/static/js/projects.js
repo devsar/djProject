@@ -22,11 +22,19 @@ $(function(){
         tagName: 'li',
         className: 'sprint',
 
-	    initialize: function() {
+	    initialize: function(options) {
 	        this.model.bind('change', this.render, this);
 	        this.model.view = this;
 	    },
-
+	    
+	    events: {
+	        "click div.sprint"   : "showSprint",
+	    },
+	    
+	    showSprint: function() {
+	    	window.tasks.filtered(null, this.model.get("id"));
+	    },
+	    
         render: function() {
             $(this.el).html(djProject.templates.sprintTemplate({sprint: this.model.toJSON()}));
             return this;
@@ -46,6 +54,10 @@ $(function(){
     	  //this.model.sprint.bind('all', this.render, this);
           
       },
+      
+      events: {
+	        "click div.project"   : "showProject",
+	  },
 
       addSprints: function(){
     	  $(this.view.el).filter('.project-sprints').html('');
@@ -54,8 +66,12 @@ $(function(){
 
       addSprint: function(sprint){      	
           var view = new SprintView({model: sprint});
-          $('ul[data-uri="'+sprint.get('project_uri')+'"]').append(view.render().el);
+          $('ul[data-uri="'+sprint.get('project_uri')+'"]').prepend(view.render().el);
       },
+      
+      showProject: function() {
+	    	window.tasks.filtered(this.model.get("id"));
+	  },
       
       render: function() {
           $(this.el).html(djProject.templates.projectTemplate({project: this.model.toJSON()}));

@@ -8,6 +8,8 @@ from django.template.response import TemplateResponse
 from nest.forms import SignUpForm, UserForm
 
 def home(request):
+    if request.user.is_authenticated():
+        return redirect('projects_main')
     return TemplateResponse(request, 'index.html', {})
 
 def signup(request):

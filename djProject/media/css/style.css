@@ -1,5 +1,6 @@
 @import url("boiler.css");
 @import url("../uni_form/uni-form.css");
+@import url("buttons.css");
 
 
 /* reset */
@@ -17,6 +18,8 @@ sub{vertical-align:text-bottom;}
 input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
 input,textarea,select{*font-size:100%;}
 legend{color:#000;}
+label{text-align: left;}
+
 
 body{
 	background: url(../img/back.png) repeat;
@@ -124,11 +127,11 @@ body{
 
 /** Sign Up & Log In **/
 
-#nest_signup, #nest_login, #nest_user_profile {
+#nest_signup, #nest_login, #nest_user_profile, #simple_form {
 	margin: 10% auto;
 	width: 30%;
 	color: #EEE;
-	background-color: black;
+	background: url(../img/back_header.png) repeat;
 }
 
 #nest_signup, #nest_login > .buttonHolder {
@@ -146,6 +149,7 @@ body{
 	background-color: red;
 }
 
+/*
 .submitButton {
 	background-color: #EEE;
 	font-size: 1.5em;
@@ -157,16 +161,24 @@ body{
 	-webkit-border-radius: 8px;
 	border-top: 1px solid #660;
 }
+*/
 
 /** Projects **/
 #projects-menu {
 	float: right;
 }
 
+.column{
+	background: white;
+	box-shadow: 0px 0px 10px 5px #EEE;
+	border: solid 1px #DDD;
+	border-radius: 5px;
+	min-height: 500px;
+}
+	
 body.projects .column {
 	margin: 10px auto;
 	width: 95%;
-	box-shadow: 0px 0px 2px gray;
 }
 
 body.projects h2 {

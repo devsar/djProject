@@ -2,7 +2,28 @@
 @import url("../uni_form/uni-form.css");
 
 
+/* reset */
+body, sdiv,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}
+
+body{
+	background: url(../img/back.png) repeat;
+}
+
 /* Common Classes */
+
 .table {
     display:table;
     background-color:#fefefe;
@@ -54,12 +75,18 @@
 
 #top-bar {
 	min-width: 960px;
-	background-color: #2D2D2D;
+	background: url(../img/back_header.png) repeat;
 	color: #FFF;
 	font: 13px/27px Arial,sans-serif;
 	height: 30px;
-	border-bottom: 1px solid black;
+	border-bottom: solid 1px white;
 }
+
+#top-bar a, #top-bar{
+	text-shadow: 0px 0px 3px #444;
+	color: #fff;
+}
+	
 .yui3-g *{
 	letter-spacing: 0em;
 	word-spacing: 0em;
@@ -69,10 +96,6 @@
 	text-decoration:none;
 }
 	
-#top-bar a {
-	color: #FFF;
-}
-
 #top-auth-box {
 	text-align: right;
 	margin-right: 40px;
@@ -82,14 +105,21 @@
 	margin-left: 40px;
 }
 
+#logo{
+	margin: 50px;
+	width: 400px;
+	margin: 200px auto;
+	height: 200px;
+}
+
 #main h1.logo {
-	position: absolute;
 	text-align: center;
 	top: 35%;
 	width: 100%;
 	font-size: 6em;
-	text-shadow: 5px 5px 5px #666;
-	color: #EEE;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	color: #333;
+	padding-top: 50px;
 }
 
 /** Sign Up & Log In **/

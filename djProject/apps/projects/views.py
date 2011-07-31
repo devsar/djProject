@@ -1,12 +1,11 @@
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, get_object_or_404 
+from django.shortcuts import get_object_or_404 
 
 
-from projects.forms import ProjectForm  
+from projects.forms import ProjectForm, ProjectMemberForm  
 from projects.models import Project, Member
 
 @login_required
@@ -32,16 +31,18 @@ def project_new(request):
     return TemplateResponse(request, "projects/project_new.html", {'form': form}) 
         
 
-@login_required
-def project_edit(request, id_project):
-    pass
-
 
 @login_required
-def task_new(request):
-    pass
-
-
-@login_required
-def task_edit(request, id_project):
-    pass
+def member_add(request, id_project):
+    project = get_object_or_404(Project, id=id_project)
+    form = ProjectMemberForm(request.POST or None)
+    if form.is_valid():
+        users = form.cleaned_data['users']
+        for user in users:
+            try:
+                Member.objects.filter(project=project, user=user).get()
+            except Member.DoesNotExist:
+                Member(user=user, project=project, role='leader').save()
+        return HttpResponse("Member Saved!")
+    return TemplateResponse(request, "projects/member_add.html", {'form': form}) 
+    

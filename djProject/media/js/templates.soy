@@ -68,10 +68,12 @@
  * @param project the name project.
  */
 {template .projectTemplate}
-<div id="project-{$project.id}" class="project"><a href="#">{$project.name}</a><a href="/projects/add_member/{$project.id}">add member</a></div>
+<div id="project-{$project.id}" class="project"><a href="#">{$project.name}</a></div>
 <ul class="project-sprints" data-uri="{$project.resource_uri}">
 <div class="backlog"><a href="#">backlog</a>
 </ul>
+<a class="cboxElement add-member" href="/projects/member_add/{$project.id}/">add member</a>
+<a class="sprint-create" class="cboxElement" href="/projects/sprint/{$project.id}/" title="">Create Sprint</a>
 {/template}
 
 

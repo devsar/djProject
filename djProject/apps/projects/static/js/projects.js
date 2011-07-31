@@ -183,13 +183,12 @@ $(function(){
     	  this.sprints = new window.Sprints({project: this.model});
     	  this.sprints.bind('refresh', this.addSprints);
     	  this.sprints.view = this;
-    	  //this.model.sprint.bind('all', this.render, this);
-          
+    	  //this.model.sprint.bind('all', this.render, this);    	  
       },
       
       events: {
     	  "click div.project"   : "showProject",
-          "click div.backlog"   : "showBacklog",
+          "click div.backlog"   : "showBacklog"
 	  },
 
       addSprints: function(){
@@ -212,7 +211,9 @@ $(function(){
       
       render: function() {
           $(this.el).html(djProject.templates.projectTemplate({project: this.model.toJSON()}));
-          this.sprints.fetch();
+          $(".sprint-create", this.el).colorbox({width:"400px", height:"300px", iframe:true});
+          $(".add-member", this.el).colorbox({width:"300px", height:"240px", iframe:true});
+          this.sprints.fetch();          
           return this;
       }
     });

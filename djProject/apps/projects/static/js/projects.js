@@ -1,7 +1,7 @@
 $(function(){
 
     window.TaskView = Backbone.View.extend({
-      tagName: 'li',
+      tagName: 'div',
       className: 'task',
 
       initialize: function() {
@@ -10,7 +10,10 @@ $(function(){
 	  },
 
       render: function(){
-          $(this.el).html(djProject.templates.taskTemplate({task: this.model.toJSON()}));
+    	  var task = this.model.toJSON();
+    	  $(this.el).addClass('tr');
+    	  $(this.el).attr("id", "task-" + task.id);
+          $(this.el).html(djProject.templates.taskTemplate({task: task}));
           return this;
       }
     });
@@ -48,12 +51,13 @@ $(function(){
       },
       
       addTasks: function(){
+    	  $('#projects-tasks-container').html(djProject.templates.tasksTableHeader());
           window.tasks.each(window.app.addTask);
       },
 
       addTask: function(task){      	
           var view = new TaskView({model: task});
-          this.$('#projects-tasks-container').prepend(view.render().el);
+          this.$('#projects-tasks-container').append(view.render().el);
       },
       
       addProjects: function(){

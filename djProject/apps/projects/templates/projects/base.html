@@ -44,7 +44,9 @@
 <div class="yui3-u-1-3">
      <div id="projects-tasks" class="column">
      <h2>{% trans "Tasks"%}</h2>
-     	<div id="projects-tasks-container"></div>
+     	<div id="projects-tasks-container" class="table">
+		</div>
+		<span>&nbsp;</span>
      </div>
 </div>
 <div class="yui3-u-1-6">
@@ -74,8 +76,9 @@ WEB_SOCKET_DEBUG = true;
 var pusher = new Pusher('93d0509ce62dd993b05a');
 var channel = pusher.subscribe('{{ user.username }}');
 channel.bind('task_created', function(data) {
-	alert('hola');
-	window.app.addTask(new window.Task({task: data.task}));
+	//window.app.addTask(new window.Task({task: data.task}));
+	//window.tasks.add([data.task]);
+	window.tasks.fetch();
 }); 
 channel.bind('task_updated', function(data) {
 	//var task = window.tasks.get(data.task.id);

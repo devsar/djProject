@@ -5,15 +5,22 @@ if (typeof djProject == 'undefined') { var djProject = {}; }
 if (typeof djProject.templates == 'undefined') { djProject.templates = {}; }
 
 
+djProject.templates.tasksTableHeader = function(opt_data, opt_sb) {
+  var output = opt_sb || new soy.StringBuilder();
+  output.append('<div class="thg"><div style="" class="tc">id</div><div style="" class="tc">description</div><div style="" class="tc">owner</div><div style="" class="tc">status</div><div style="" class="tc">est.</div><div style="" class="tc">spend</div><div style="" class="tc">rem.</div></div>');
+  if (!opt_sb) return output.toString();
+};
+
+
 djProject.templates.taskTemplate = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div class="task', (opt_data.has_parent) ? ' child' : '', '"><div class="description">', soy.$$escapeHtml(opt_data.description), '</div><div class="owner">', soy.$$escapeHtml(opt_data.owner), '</div><div class="description">', soy.$$escapeHtml(opt_data.description), '</div><div class="status">', soy.$$escapeHtml(opt_data.status), '</div><div class="estimated"><input type="text" name="estimated" value="', soy.$$escapeHtml(opt_data.estimated), '"/></div><div class="spend"><input type="text" name="spend" value="', soy.$$escapeHtml(opt_data.spend), '"/></div><div class="remaining">', soy.$$escapeHtml(opt_data.remaining), '</div><div class="priority">', soy.$$escapeHtml(opt_data.priority), '</div></div>');
+  output.append('<div class="tc id">', soy.$$escapeHtml(opt_data.task.id), '</div><div class="tc description">', soy.$$escapeHtml(opt_data.task.description), '</div><div class="tc owner">', soy.$$escapeHtml(opt_data.task.owner ? opt_data.task.owner : '--'), '</div><div class="tc status">', soy.$$escapeHtml(opt_data.task.status), '</div><div class="tc estimated">', soy.$$escapeHtml(opt_data.task.estimated ? opt_data.task.estimated : '--'), '</div><div class="tc spend">', soy.$$escapeHtml(opt_data.task.spend ? opt_data.task.spend : '--'), '</div><div class="tc remaining">', soy.$$escapeHtml(opt_data.task.remaining ? opt_data.task.remaining : '--'), '</div>');
   if (!opt_sb) return output.toString();
 };
 
 
 djProject.templates.projectTemplate = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div>', soy.$$escapeHtml(opt_data.name), '</div>');
+  output.append('<div id="project-', soy.$$escapeHtml(opt_data.project.id), '">', soy.$$escapeHtml(opt_data.project.name), '</div>');
   if (!opt_sb) return output.toString();
 };

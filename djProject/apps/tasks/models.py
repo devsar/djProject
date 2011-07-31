@@ -41,11 +41,12 @@ class Task(models.Model):
 
 
     def save(self, *args , ** kwargs ):
-        super(Task, self).save(* args, ** kwargs)
-        if self.id:
-            message = 'task_updated'
-        else:
+        if self.id is None:
             message = 'task_created'
+        else:
+            message = 'task_updated'
+            
+        super(Task, self).save(* args, ** kwargs)
             
         try:
             p = get_pusher()

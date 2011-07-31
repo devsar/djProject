@@ -2,6 +2,56 @@
 @import url("../uni_form/uni-form.css");
 
 
+/* Common Classes */
+.table {
+    display:table;
+    background-color:#fefefe;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.5);
+    width:100%;
+}
+
+.thg{
+    display:table-header-group;
+    font-weight:bold;
+    font-size:1.2em;
+}
+
+.tr{
+    display:table-row;
+}
+
+.tc{
+    display:table-cell;
+    padding: 5px 5px 5px 5px;
+}
+
+.tc-vcenter {
+    vertical-align: middle;
+}
+
+.tc-vtop {
+    vertical-align: top;
+}
+
+.tablealt{
+    background-color:#EEE;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+
+/* Layout */
+
 #top-bar {
 	min-width: 960px;
 	background-color: #2D2D2D;
@@ -91,5 +141,18 @@ body.projects .column {
 
 body.projects h2 {
 	text-align: center;
+}
+
+#projects-tasks-header div {
+	display: inline-block;
+}
+
+li span.task div {
+	display: inline-block;
+}
+
+#projects-tasks-container {
+	width: 95%;
+	margin: 5px auto; 
 }
 

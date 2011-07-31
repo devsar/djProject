@@ -1,36 +1,39 @@
 {namespace djProject.templates}
 
 /**
+ * build task table header
+ */
+{template .tasksTableHeader}
+<div class="thg">
+	<div style="" class="tc">id</div>
+	<div style="" class="tc">description</div>
+	<div style="" class="tc">owner</div>
+	<div style="" class="tc">status</div>
+	<div style="" class="tc">est.</div>
+	<div style="" class="tc">spend</div>
+	<div style="" class="tc">rem.</div>
+</div>
+{/template}
+/**
  * Render Task
- * @param has_parent if the task has task.
- * @param owner the owner task.
- * @param description the description.
- * @param status the status task.
- * @param estimated the estimated task.
- * @param spend the spend task.
- * @param remaining the remaining task.
- * @param priority the priority task.
+ * @param task the owner task.
  */
 {template .taskTemplate}
-
-<div class="task{if $has_parent } child{/if}"> 
-	<div class="description">{$description}</div>
-	<div class="owner">{$owner}</div>
-	<div class="description">{$description}</div>
-	<div class="status">{$status}</div>
-	<div class="estimated"><input type="text" name="estimated" value="{$estimated}"/></div>
-	<div class="spend"><input type="text" name="spend" value="{$spend}"/></div>
-	<div class="remaining">{$remaining}</div>
-	<div class="priority">{$priority}</div>
-</div>
- 
+<div class="tc id">{$task.id}</div>
+<div class="tc description">{$task.description}</div>
+<div class="tc owner">{$task.owner ? $task.owner : '--'}</div>
+<div class="tc status">{$task.status}</div>
+<div class="tc estimated">{$task.estimated ? $task.estimated : '--'}</div>
+<div class="tc spend">{$task.spend ? $task.spend : '--'}</div>
+<div class="tc remaining">{$task.remaining ? $task.remaining : '--'}</div>
+/* <div class="tc priority">{$task.priority ? $task.priority : '--'}</div> */
 {/template}
 
 
 /**
  * Render Project
- * @param name the name project.
+ * @param project the name project.
  */
 {template .projectTemplate}
- <div>{$name}</div>
+<div id="project-{$project.id}">{$project.name}</div>
 {/template}

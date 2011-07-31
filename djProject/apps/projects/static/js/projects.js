@@ -32,7 +32,7 @@ $(function(){
 	    },
 	    
 	    showSprint: function() {
-	    	window.tasks.filtered(null, this.model.get("id"));
+	    	window.tasks.filtered(null, this.model);
 	    },
 	    
         render: function() {
@@ -56,7 +56,8 @@ $(function(){
       },
       
       events: {
-	        "click div.project"   : "showProject",
+    	  "click div.project"   : "showProject",
+          "click div.backlog"   : "showBacklog",
 	  },
 
       addSprints: function(){
@@ -71,6 +72,10 @@ $(function(){
       
       showProject: function() {
 	    	window.tasks.filtered(this.model.get("id"));
+	  },
+	  
+	  showBacklog: function() {
+	    	window.tasks.filtered(this.model.get("id"), 'backlog');
 	  },
       
       render: function() {
@@ -94,18 +99,25 @@ $(function(){
           window.projects.bind('refresh', this.addProjects, this);          
           window.projects.bind('all', this.render, this);
           window.projects.fetch();
+          window.current_project = null;
+          window.current_sprint = null;
           
       },
       
       events: {
           //"keypress #new-todo":  "createOnEnter",
           //"keyup #new-todo":     "showTooltip",
-          "click .project-link a": "projectTasks"
+          "click .project-link a": "projectTasks",
+          "keypress #new-task":  "createOnEnter"
        },
       
       addTasks: function(){
-    	  $('#projects-tasks-container').html(djProject.templates.tasksTableHeader());
+    	  $('#projects-tasks').html(djProject.templates.tasksTableHeader({
+    		  project: window.current_project,
+    		  sprint: window.current_sprint
+    	  }));
           window.tasks.each(window.app.addTask);
+          window.app.input = $("#new-task");
       },
 
       addTask: function(task){      	
@@ -120,6 +132,24 @@ $(function(){
       addProject: function(project){      	
           var view = new ProjectView({model: project});
           this.$('#projects-container').prepend(view.render().el);
+      },
+      newAttributes: function() {
+    	  
+          data =  {}
+          if (window.current_project) {
+        	  data['project'] = window.current_project.get('resource_uri');
+          }
+          
+          if (window.current_sprint) { 
+        	  data['sprint'] = window.current_sprint.get('resource_uri');
+          }
+          data['description'] = window.app.input.val();
+          return data;
+      },
+      createOnEnter: function(e){
+    	  if (e.keyCode != 13) return;
+          window.tasks.create(this.newAttributes());
+          this.input.val('');
       }
 
     });

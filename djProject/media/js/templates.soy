@@ -2,8 +2,13 @@
 
 /**
  * build task table header
+ * @param project? the project
+ * @param sprint? the sprint
  */
 {template .tasksTableHeader}
+<h2>Tasks</h2>
+<span>{if $project}Project: {$project.attributes.name}{/if} {if $sprint}Sprint: {$sprint.attributes.name}{/if}</span>
+<div id="projects-tasks-container" class="table">
 <div class="thg">
 	<div style="" class="tc">id</div>
 	<div style="width: 40%" class="tc">description</div>
@@ -13,6 +18,12 @@
 	/* <div style="" class="tc">spend</div> */
 	<div style="" class="tc">rem.</div>
 	<div style="" class="tc"></div>
+</div>
+</div>
+<div id="create-task">
+{if $project}
+	<input id="new-task" placeholder="What needs to be done?" type="text">
+{/if}
 </div>
 {/template}
 

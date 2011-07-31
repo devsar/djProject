@@ -7,6 +7,8 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from projects.models import Project
 from tasks.models import Task
 from sprints.models import Sprint
+import logging
+from django.http import Http404, HttpResponseBadRequest
 
 
 class ProjectResource(ModelResource):
@@ -17,8 +19,13 @@ class ProjectResource(ModelResource):
 
     def get_object_list(self, request):
         
-        projects = super(ProjectResource, self).get_object_list(request)        
-        return projects.filter(member__user=request.user)
+        projects = super(ProjectResource, self).get_object_list(request)
+        if request:
+            return projects.filter(member__user=request.user)
+        else:
+            #internal query
+            return projects
+            
 
 class SprintResource(ModelResource):
     project_uri = fields.ToOneField(ProjectResource, 'project')
@@ -30,7 +37,11 @@ class SprintResource(ModelResource):
 
     def get_object_list(self, request):
         sprints = super(SprintResource, self).get_object_list(request)        
-        return sprints.filter(project__member__user=request.user)
+        if request:
+            return sprints.filter(project__member__user=request.user)
+        else:
+            #internal query
+            return sprints
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -45,6 +56,9 @@ class SprintResource(ModelResource):
 
 
 class TaskResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
+    sprint = fields.ForeignKey(SprintResource, 'sprint', null=True)
+
     class Meta:
         queryset = Task.objects.all()
         resource_name = 'task'

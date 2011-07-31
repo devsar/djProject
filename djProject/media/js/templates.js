@@ -7,7 +7,7 @@ if (typeof djProject.templates == 'undefined') { djProject.templates = {}; }
 
 djProject.templates.tasksTableHeader = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append('<div class="thg"><div style="" class="tc">id</div><div style="width: 40%" class="tc">description</div><div style="" class="tc">owner</div><div style="" class="tc">status</div><div style="" class="tc">est.</div><div style="" class="tc">rem.</div><div style="" class="tc"></div></div>');
+  output.append('<h2>Tasks</h2><span>', (opt_data.project) ? 'Project: ' + soy.$$escapeHtml(opt_data.project.attributes.name) : '', ' ', (opt_data.sprint) ? 'Sprint: ' + soy.$$escapeHtml(opt_data.sprint.attributes.name) : '', '</span><div id="projects-tasks-container" class="table"><div class="thg"><div style="" class="tc">id</div><div style="width: 40%" class="tc">description</div><div style="" class="tc">owner</div><div style="" class="tc">status</div><div style="" class="tc">est.</div><div style="" class="tc">rem.</div><div style="" class="tc"></div></div></div><div id="create-task">', (opt_data.project) ? '<input id="new-task" placeholder="What needs to be done?" type="text">' : '', '</div>');
   if (!opt_sb) return output.toString();
 };
 

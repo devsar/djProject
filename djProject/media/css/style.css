@@ -156,3 +156,24 @@ li span.task div {
 	margin: 5px auto; 
 }
 
+#create-task {
+	position: relative;
+	width: 95%;
+	margin: 10px auto;
+	padding-bottom: 10px;
+}
+
+#create-task input {
+	width: 97%;
+	font-size: 24px;
+	font-family: inherit;
+	line-height: 1.4em;
+	border: 0;
+	outline: none;
+	padding: 6px;
+	border: 1px solid #999;
+	-moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+	-o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}

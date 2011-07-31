@@ -232,7 +232,11 @@ div.tc.editing .content {
 	display: none;
 }
 
-.link_create{
+.estimated-input, .remaining-input {
+	width: 60%;
+}
+
+.link_menu, .link_create{
 	text-decoration: none;
 	color: #777;
 	border-bottom: 1px solid #DDD;
@@ -267,10 +271,11 @@ a:hover.link_create, #projects-list a:hover{
 	display: block;
 }
 
-.task{
+.task {
 	display: block;
 }
 
+<<<<<<< HEAD:djProject/media/css/style.css
 .task dt, .task dl{
 	display: inline;
 }
@@ -284,4 +289,8 @@ a:hover.link_create, #projects-list a:hover{
 .edit input{
 	border: 1px solid #DDD;
 	padding: 2px;
+=======
+.tc .content:hover {
+	background: #FFFF99;
+>>>>>>> bed52e40cf88b1a880318f9c8c46910bb49de3ef:djProject/media/css/style.css
 }

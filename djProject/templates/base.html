@@ -99,7 +99,25 @@ WEB_SOCKET_DEBUG = true;
       TASK_API = "{%url api_dispatch_list resource_name="task" %}";
       PROJECT_API = "{%url api_dispatch_list resource_name="project" %}";
 </script>
-
+<script src="{{ STATIC_URL }}js/soundmanager2-nodebug-jsmin.js"></script>
+<script>
+soundManager.url = '{{ STATIC_URL }}';
+soundManager.flashVersion = 9; // optional: shiny features (default = 8)
+soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
+// enable HTML5 audio support, if you're feeling adventurous. iPad/iPhone will always get this.
+// soundManager.useHTML5Audio = true;
+soundManager.onready(function(oStatus) {
+	  if (oStatus.success) {
+	    // SM2 has loaded - now you can create and play sounds!
+	    popSound = soundManager.createSound({
+	      id: 'aSound',
+	      url: '{{ STATIC_URL }}audio/pop.mp3'
+	      // onload: [ event handler function object ],
+	      // other options here..
+	    });
+	  }
+});
+</script>
 {% endblock %}
 </body>
 </html>

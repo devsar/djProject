@@ -12,7 +12,11 @@ $(function(){
       events: {
 	     "click div.task-details"   : "showDetails",
 	     "click div.description .content" : "editDescription",
-	     "keypress .description-input" : "updateDescription"
+	     "keypress .description-input" : "updateDescription",
+	     "click div.estimated .content" : "editEstimated",
+	     "keypress .estimated-input" : "updateEstimated",
+	     "click div.remaining .content" : "editRemaining",
+	     "keypress .remaining-input" : "updateRemaining"
 	  },
 	  
 	  showDetails: function(e) {
@@ -21,9 +25,8 @@ $(function(){
 	  },
 	  
 	  editDescription: function(e) {
-		  //alert("click");
 		  $("div.description", this.el).addClass("editing");
-		  input = $("input", $(this.el));
+		  input = $(".description input", $(this.el));
 		  input.val(this.model.get('description'));
 		  input.focus();
 
@@ -32,10 +35,39 @@ $(function(){
 	  updateDescription: function(e) {
 		  if (e.keyCode != 13) return;
 		  $(".description", this.el).removeClass("editing");
-		  value = $("input", $(this.el)).val();
+		  value = $(".description input", $(this.el)).val();
 		  this.model.save({"description": value});
 	  },
 	  
+	  editEstimated: function(e) {
+		  $("div.estimated", this.el).addClass("editing");
+		  input = $(".estimated input", $(this.el));
+		  input.val(this.model.get('estimated'));
+		  input.focus();
+
+	  },
+	  
+	  updateEstimated: function(e) {
+		  if (e.keyCode != 13) return;
+		  $(".estimated", this.el).removeClass("editing");
+		  value = $(".estimated input", $(this.el)).val();
+		  this.model.save({"estimated": value});
+	  },
+
+	  editRemaining: function(e) {
+		  $("div.remaining", this.el).addClass("editing");
+		  input = $(".remaining input", $(this.el));
+		  input.val(this.model.get('remaining'));
+		  input.focus();
+
+	  },
+	  
+	  updateRemaining: function(e) {
+		  if (e.keyCode != 13) return;
+		  $(".remaining", this.el).removeClass("editing");
+		  value = $(".remaining input", $(this.el)).val();
+		  this.model.save({"remaining": value});
+	  },
 	  
       render: function(){
     	  if (!this.model) return;

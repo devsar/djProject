@@ -211,7 +211,7 @@ $(function(){
       
       render: function() {
           $(this.el).html(djProject.templates.projectTemplate({project: this.model.toJSON()}));
-          $(".sprint-create", this.el).colorbox({width:"400px", height:"300px", iframe:true});
+          $(".sprint-create", this.el).colorbox({width:"400px", height:"400px", iframe:true});
           this.sprints.fetch();          
           return this;
       }

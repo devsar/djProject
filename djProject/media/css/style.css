@@ -189,14 +189,14 @@ li span.task div {
 	margin: 5px auto; 
 }
 
-#create-task {
+#create-task, #create-comment {
 	position: relative;
 	width: 95%;
 	margin: 10px auto;
 	padding-bottom: 10px;
 }
 
-#create-task input {
+#create-task input, #create-comment input {
 	width: 97%;
 	font-size: 24px;
 	font-family: inherit;

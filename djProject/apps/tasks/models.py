@@ -69,5 +69,10 @@ class Log(models.Model):
     task = models.ForeignKey(Task)
     description = models.CharField(max_length=255)
     
-    
-    
+class Comment(models.Model):
+    task = models.ForeignKey(Task)
+    user = models.ForeignKey(User)
+    comment = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+

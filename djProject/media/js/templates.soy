@@ -8,6 +8,7 @@
 {template .tasksTableHeader}
 <h2>Tasks</h2>
 <span>{if $project}Project: {$project.attributes.name}{/if} {if $sprint}Sprint: {$sprint.attributes.name}{/if}</span>
+
 <div id="projects-tasks-container" class="table">
 <div class="thg">
 	<div style="" class="tc">id</div>
@@ -20,11 +21,13 @@
 	<div style="" class="tc"></div>
 </div>
 </div>
-<div id="create-task">
+
 {if $project}
+<div id="create-task">
 	<input id="new-task" placeholder="What needs to be done?" type="text">
-{/if}
 </div>
+{/if}
+
 {/template}
 
 /**
@@ -40,7 +43,7 @@
 /* <div class="tc spend">{$task.spend ? $task.spend : '--'}</div> */
 <div class="tc remaining">{$task.remaining ? $task.remaining : '--'}</div>
 /* <div class="tc priority">{$task.priority ? $task.priority : '--'}</div> */
-<div id="task-more-{$task.id}" data-id="{$task.id}" class="tc task-more">-></div>
+<div id="task-more-{$task.id}" data-id="{$task.id}" class="tc task-details"><a href="#">-></a></div>
 {/template}
 
 /**
@@ -60,4 +63,29 @@
 <ul class="project-sprints" data-uri="{$project.resource_uri}">
 <div class="backlog"><a href="#">backlog</a>
 </ul>
+{/template}
+
+
+/**
+ * Render Task Details template
+ * @param task the owner task.
+ */
+{template .taskDetailsTemplate}
+<h2>Task Details</h2>
+<dl>
+<dt>Id:</dt> <dl class="id">{$task.id}</dd>
+<dt>Owner</dt><dd class="owner">{$task.owner ? $task.owner : '--'}</dd>
+<dt>Status</dt><dd class="status">{$task.status}</dd>
+<dt>Estimated</dt><dd class="estimated">{$task.estimated ? $task.estimated : '--'}</dd>
+<dt>Spend</dt><dd class="spend">{$task.spend ? $task.spend : '--'}</dd>
+<dt>Remaining</dt><dd class="remaining">{$task.remaining ? $task.remaining : '--'}</dd>
+<dt>Priority</dt><dd class="priority">{$task.priority ? $task.priority : '--'}</dd>
+</dl>
+<h2>Description</h2>
+<p class="description">{$task.description}</p>
+<h2>Comments</h2>
+<ul id="comments-list">no comments</ul>
+<div id="create-comment">
+	<input id="new-comment" placeholder="Something to say?" type="text">
+</div>
 {/template}

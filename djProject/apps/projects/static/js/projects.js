@@ -9,6 +9,15 @@ $(function(){
 	      this.model.view = this;
 	  },
 
+      events: {
+	     "click div.task-details"   : "showDetails",
+	  },
+
+	  showDetails: function(e) {
+		  var task = this.model.toJSON();
+          $("#projects-side").html(djProject.templates.taskDetailsTemplate({task: task}));
+	  },
+	  
       render: function(){
     	  var task = this.model.toJSON();
     	  $(this.el).addClass('tr');
@@ -16,6 +25,25 @@ $(function(){
           $(this.el).html(djProject.templates.taskTemplate({task: task}));
           return this;
       }
+    });
+    
+    
+    window.TaskDetailsView = Backbone.View.extend({
+        tagName: 'div',
+        className: 'task',
+
+        initialize: function() {
+  	      this.model.bind('change', this.render, this);
+  	      this.model.view = this;
+  	  	},
+
+        render: function(){
+      	  var task = this.model.toJSON();
+      	  $(this.el).addClass('tr');
+      	  $(this.el).attr("id", "task-" + task.id);
+            $(this.el).html(djProject.templates.taskDetailsTemplate({task: task}));
+            return this;
+        }
     });
 
     window.SprintView = Backbone.View.extend({

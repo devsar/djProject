@@ -11,7 +11,7 @@
      <div id="projects-menu" class="column">
      	<h2>{% trans "Menu"%}</h2>
      	<ul>
-     	<li><a href="{% url projects_project_new %}" title="">{% trans "Create Project" %}</a></li>
+     	<li><a id="project-create" class="cboxElement" href="{% url projects_project_new %}" title="">{% trans "Create Project" %}</a></li>
      	</ul>
      </div>
 </div>
@@ -65,7 +65,7 @@ channel.bind('task_updated', function(data) {
 });
 channel.bind('project_created', function(data) {
 	//fast trick
-	$("#projects-column").load("/projects/ #projects-list");
+	window.projects.fetch();
 });
 </script>
 {% endblock %}

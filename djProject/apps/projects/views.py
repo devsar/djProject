@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -28,7 +28,7 @@ def project_new(request):
         creator = request.user
         project = Project()
         project.new(creator, name)
-        return HttpResponseRedirect(reverse('projects_main'))
+        return HttpResponse("Project Created!")
     return TemplateResponse(request, "projects/project_new.html", {'form': form}) 
         
 

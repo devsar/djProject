@@ -1,6 +1,8 @@
+@import url("http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css");
 @import url("boiler.css");
 @import url("../uni_form/uni-form.css");
 @import url("buttons.css");
+@import url("colorbox.css");
 
 
 /* reset */
@@ -127,7 +129,12 @@ body{
 
 /** Sign Up & Log In **/
 
-#nest_signup, #nest_login, #nest_user_profile, #simple_form {
+#simple_form{
+	color: #EEE;
+	background: url(../img/back_header.png) repeat;
+}
+	
+#nest_signup, #nest_login, #nest_user_profile{
 	margin: 10% auto;
 	width: 30%;
 	color: #EEE;

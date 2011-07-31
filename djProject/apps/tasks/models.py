@@ -10,8 +10,8 @@ from sprints.models import *
 from nest.utils import get_pusher
 
 STATUS_CHOICES = (
-    ('O','Open'),
-    ('C','Closed'),
+    ('N','Not Started'),
+    ('C','Completed'),
     ('P', 'In Progress'),
     ('B','Blocked'),
 )
@@ -30,7 +30,7 @@ class Task(models.Model):
     sprint = models.ForeignKey(Sprint, null=True, blank=True)
     owner = models.ForeignKey(User, null=True, blank=True)
     description = models.TextField(max_length=255)
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default="N")
     estimated = models.DecimalField(decimal_places=2, max_digits=4, null=True, blank=True)
     spend = models.DecimalField(decimal_places=2, max_digits=4, null=True, blank=True)
     remaining = models.DecimalField(decimal_places=2, max_digits=4, null=True, blank=True)

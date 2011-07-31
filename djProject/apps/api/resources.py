@@ -77,14 +77,23 @@ class TaskResource(ModelResource):
         if filters is None:
             filters = {}
 
+        if "sprint" in filters:
+            sprint = filters["sprint"]
+            del filters["sprint"]
+        else:
+            sprint = None    
+
         orm_filters = super(TaskResource, self).build_filters(filters)
+        
 
         if "project" in filters:
             orm_filters["project__id"] = filters['project']
-        if "sprint" in filters:
-            if filters['sprint'] == 'backlog':
+        
+        if sprint:
+            if sprint == 'backlog':
                 orm_filters["sprint__isnull"] = True
             else:
-                orm_filters["sprint__id"] = filters['sprint']
+                orm_filters["sprint__id"] = sprint
+        
         
         return orm_filters

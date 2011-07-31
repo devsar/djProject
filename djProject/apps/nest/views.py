@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.template.response import TemplateResponse
 
-
 from nest.forms import SignUpForm, UserForm
 
 def home(request):

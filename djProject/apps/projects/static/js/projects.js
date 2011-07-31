@@ -102,6 +102,8 @@ $(function(){
           window.current_project = null;
           window.current_sprint = null;
           
+          $("#project-create").colorbox({width:"300px", height:"200px", iframe:true});
+          
       },
       
       events: {

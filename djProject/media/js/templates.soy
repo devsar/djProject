@@ -35,7 +35,7 @@
  * @param task the owner task.
  */
 {template .taskTemplate}
-<div class="tc id">{$task.id}</div>
+<div class="tc id task-details"><a href="#">{$task.id}</a></div>
 <div class="tc description">{$task.description}</div>
 <div class="tc owner">{$task.owner ? $task.owner : '--'}</div>
 <div class="tc status">{$task.status}</div>
@@ -88,4 +88,14 @@
 <div id="create-comment">
 	<input id="new-comment" placeholder="Something to say?" type="text">
 </div>
+{/template}
+
+
+/**
+ * Render Comment
+ * @param comment the comment.
+ */
+{template .commentTemplate}
+<p class="comment">{$comment.comment}</p>
+<span class="username">by {$comment.username}</span>
 {/template}

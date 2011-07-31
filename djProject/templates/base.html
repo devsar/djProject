@@ -93,9 +93,11 @@ WEB_SOCKET_DEBUG = true;
 	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
 <script>
-      TASK_API = "{%url api_dispatch_list resource_name="task"%}";
-      SPRINT_API = "{%url api_dispatch_list resource_name="sprint"%}";
-      PROJECT_API = "{%url api_dispatch_list resource_name="project"%}";
+	  USER_URI = "/api/v1/user/{{ user.id }}/";
+      COMMENT_API = "{%url api_dispatch_list resource_name="comment" %}";
+      SPRINT_API = "{%url api_dispatch_list resource_name="sprint" %}";
+      TASK_API = "{%url api_dispatch_list resource_name="task" %}";
+      PROJECT_API = "{%url api_dispatch_list resource_name="project" %}";
 </script>
 
 {% endblock %}

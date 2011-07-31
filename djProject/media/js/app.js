@@ -19,8 +19,7 @@ $(function(){
     window.Task = Backbone.Model.extend({
       url: function(){
          return this.get('resource_uri') || this.collection.url;
-      },
-      
+      }
     });
 
     window.Tasks = Backbone.Collection.extend({
@@ -55,10 +54,32 @@ $(function(){
     	  this.url = TASK_API + "?" + $.param(data)
     	  
           return this.fetch();
-      },
-      
+      }
     });
 
+    window.Comment = Backbone.Model.extend({
+        url: function(){
+           return this.get('resource_uri') || this.collection.url;
+        }
+    });
+
+    window.Comments = Backbone.Collection.extend({
+        url: COMMENT_API,
+        model: window.Comment,
+        parse: function(data){
+            return data.objects;
+        },
+        filtered: function(task) {
+      	  var data = {};
+      	  if (task) {
+      		  data['task'] = task.get('id');      		  
+      	  }
+      	  this.url = COMMENT_API + "?" + $.param(data)
+          return this.fetch();
+        }
+      });
+
+    
     window.Sprint = Backbone.Model.extend({
         url: function(){
            return this.get('resource_uri') || this.collection.url;

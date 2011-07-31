@@ -55,17 +55,19 @@ WEB_SOCKET_DEBUG = true;
 var pusher = new Pusher('93d0509ce62dd993b05a');
 var channel = pusher.subscribe('{{ user.username }}');
 channel.bind('task_created', function(data) {
-	//window.app.addTask(new window.Task({task: data.task}));
-	//window.tasks.add([data.task]);
 	window.tasks.fetch();
 }); 
 channel.bind('task_updated', function(data) {
-	//var task = window.tasks.get(data.task.id);
 	window.tasks.fetch();
 });
 channel.bind('project_created', function(data) {
-	//fast trick
 	window.projects.fetch();
+});
+channel.bind('comment_created', function(data) {
+	window.comments.fetch();
+}); 
+channel.bind('comment_updated', function(data) {
+	window.comments.fetch();
 });
 </script>
 {% endblock %}

@@ -6,12 +6,13 @@
 {template .tasksTableHeader}
 <div class="thg">
 	<div style="" class="tc">id</div>
-	<div style="" class="tc">description</div>
+	<div style="width: 40%" class="tc">description</div>
 	<div style="" class="tc">owner</div>
 	<div style="" class="tc">status</div>
 	<div style="" class="tc">est.</div>
-	<div style="" class="tc">spend</div>
+	/* <div style="" class="tc">spend</div> */
 	<div style="" class="tc">rem.</div>
+	<div style="" class="tc"></div>
 </div>
 {/template}
 /**
@@ -24,9 +25,10 @@
 <div class="tc owner">{$task.owner ? $task.owner : '--'}</div>
 <div class="tc status">{$task.status}</div>
 <div class="tc estimated">{$task.estimated ? $task.estimated : '--'}</div>
-<div class="tc spend">{$task.spend ? $task.spend : '--'}</div>
+/* <div class="tc spend">{$task.spend ? $task.spend : '--'}</div> */
 <div class="tc remaining">{$task.remaining ? $task.remaining : '--'}</div>
 /* <div class="tc priority">{$task.priority ? $task.priority : '--'}</div> */
+<div id="task-more-{$task.id}" data-id="{$task.id}" class="tc task-more">-></div>
 {/template}
 
 

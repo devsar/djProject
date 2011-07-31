@@ -5,6 +5,7 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 from projects.models import Project
 from tasks.models import Task
+from sprints.models import Sprint
 
 
 class ProjectResource(ModelResource):
@@ -18,6 +19,15 @@ class ProjectResource(ModelResource):
         projects = super(ProjectResource, self).get_object_list(request)        
         return projects.filter(member__user=request.user)
 
+class SprintResource(ModelResource):
+    class Meta:
+        queryset = Sprint.objects.all()
+        resource_name = 'sprint'
+        authorization = Authorization()
+
+    def get_object_list(self, request):
+        sprints = super(Sprint, self).get_object_list(request)        
+        return sprints.filter(project__member__user=request.user)
 
 class TaskResource(ModelResource):
     class Meta:
@@ -43,6 +53,9 @@ class TaskResource(ModelResource):
         if "project" in filters:
             orm_filters["project__id"] = filters['project']
         if "sprint" in filters:
-            orm_filters["sprint__id"] = filters['sprint']
+            if filters['sprint'] == 'backlog':
+                orm_filters["sprint__isnull"] = True
+            else:
+                orm_filters["sprint__id"] = filters['sprint']
         
         return orm_filters

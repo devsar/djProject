@@ -19,7 +19,8 @@ $(function(){
     window.Task = Backbone.Model.extend({
       url: function(){
          return this.get('resource_uri') || this.collection.url;
-      }
+      },
+      
     });
 
     window.Tasks = Backbone.Collection.extend({
@@ -27,6 +28,32 @@ $(function(){
       model: window.Task,
       parse: function(data){
           return data.objects;
+      },
+      filtered: function(project_id, sprint_id) {
+    	  if (project_id) {
+    		  url = TASK_API + "?project=" + project_id;
+        	  if (sprint_id) { 
+        		  url = "&sprint=" + sprint_id;
+        	  }
+        	  this.url = url;
+    	  } else {
+    		  this.url = TASK_API;
+    	  }
+          return this.fetch();
+      },
+    });
+
+    window.Sprint = Backbone.Model.extend({
+        url: function(){
+           return this.get('resource_uri') || this.collection.url;
+        }
+    });
+
+    window.Sprints = Backbone.Collection.extend({
+        url: SPRINT_API,
+  	  	model: window.Sprint,
+        parse: function(data){
+            return data.objects;
       }
     });
     

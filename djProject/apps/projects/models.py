@@ -4,9 +4,12 @@ import logging
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.utils.translation import ugettext as _
 
+
 import pusher
+from nest.utils import get_pusher
 
 PROJECT_STATUS = (
     ('active', _("Active")),
@@ -26,7 +29,7 @@ class Project(models.Model):
     since = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=PROJECT_STATUS, max_length=12)
     feed = models.URLField(max_length=512, null=True, blank=True)
-    
+        
     #TODO: transaction here
     def new(self, creator, name):
         """
@@ -46,6 +49,15 @@ class Project(models.Model):
         start_date = datetime.datetime.now()
         end_date = start_date + relativedelta(weeks=1)
         sprint.new(self, 'Sprint', start_date, end_date)
+            
+        try:
+            p = get_pusher()
+            for member in self.member_set.all():
+                p[member.user.username].trigger("project_created", {
+                    'project':  {'id': self.id, 'name': self.name}
+                })
+        except:
+            logging.exception("error notifying")
         
         return self
         

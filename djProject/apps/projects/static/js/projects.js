@@ -42,13 +42,19 @@ $(function(){
           window.tasks.bind('refresh', this.addTasks, this);          
           window.tasks.bind('all', this.render, this);          
           window.tasks.fetch();
-          
+          /*
           window.projects = new window.Projects();
           window.projects.bind('refresh', this.addProjects, this);          
           window.projects.bind('all', this.render, this);
           window.projects.fetch();
-          
+          */
       },
+      
+      events: {
+          //"keypress #new-todo":  "createOnEnter",
+          //"keyup #new-todo":     "showTooltip",
+          "click .project-link a": "projectTasks"
+       },
       
       addTasks: function(){
     	  $('#projects-tasks-container').html(djProject.templates.tasksTableHeader());

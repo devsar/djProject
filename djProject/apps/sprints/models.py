@@ -16,7 +16,18 @@ class Sprint(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     status = models.CharField(choices=SPRINT_STATUS, max_length=12)
-
+    
+    def new(self, project, name, start_date, end_date):
+        self.project = project
+        self.name = name
+        self.status = 'active'
+        self.start_date = start_date
+        self.end_date = end_date 
+        self.save()
+        return self
+                
+        
+        
 class TimeLog(models.Model):
     sprint = models.ForeignKey(Sprint)
     start_time = models.DateTimeField()

@@ -5,4 +5,3 @@ django-tastypie
 south
 django-uni-form
 pusher
-

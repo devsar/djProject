@@ -19,32 +19,13 @@
      <div id="projects-list" class="column">
      <h2>{% trans "Projects"%}</h2>
      	<div id="projects-container">
-     		
-     		{% for member in membership %}
-     			{% with member.project as project %}
-     			<div >
-     				<span class="project-link" data-project="{{ project.id }}"><a href="#">{{ project.name }}</a></span>
-     				<ul>
-     					{% for sprint in project.sprint_set.all %}
-	     					<li>
-	     						<a href="">{{ sprint.name }}</a>
-	     					</li>
-	     				{% endfor %}
-	     					<li><a href="">{% trans "Backlog" %}</a></li>
-     				</ul>
-     			</div>
-     			{% endwith %}
-     		{% endfor %}
-     		
      	</div>
      </div>
 </div>
 <div class="yui3-u-1-3">
      <div id="projects-tasks" class="column">
-     <h2>{% trans "Tasks"%}</h2>
-     	<div id="projects-tasks-container" class="table">
-		</div>
-		<span>&nbsp;</span>
+     
+     	
      </div>
 </div>
 <div class="yui3-u-1-4">

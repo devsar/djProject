@@ -25,6 +25,9 @@ class Sprint(models.Model):
         self.end_date = end_date 
         self.save()
         return self
+    
+    def __unicode__(self):
+        return u"%s" % self.name
                 
         
         

@@ -2,8 +2,13 @@
 
 /**
  * build task table header
+ * @param project? the project
+ * @param sprint? the sprint
  */
 {template .tasksTableHeader}
+<h2>Tasks</h2>
+<span>{if $project}Project: {$project.attributes.name}{/if} {if $sprint}Sprint: {$sprint.attributes.name}{/if}</span>
+<div id="projects-tasks-container" class="table">
 <div class="thg">
 	<div style="" class="tc">id</div>
 	<div style="width: 40%" class="tc">description</div>
@@ -14,7 +19,14 @@
 	<div style="" class="tc">rem.</div>
 	<div style="" class="tc"></div>
 </div>
+</div>
+<div id="create-task">
+{if $project}
+	<input id="new-task" placeholder="What needs to be done?" type="text">
+{/if}
+</div>
 {/template}
+
 /**
  * Render Task
  * @param task the owner task.
@@ -31,11 +43,21 @@
 <div id="task-more-{$task.id}" data-id="{$task.id}" class="tc task-more">-></div>
 {/template}
 
+/**
+ * Render Sprint
+ * @param sprint render sprint.
+ */
+{template .sprintTemplate}
+<div class="sprint" data-sprint="{$sprint.id}" data-project="{$sprint.project}"><a href="#">{$sprint.name}</a></div>
+{/template}
 
 /**
  * Render Project
  * @param project the name project.
  */
 {template .projectTemplate}
-<div id="project-{$project.id}">{$project.name}</div>
+<div id="project-{$project.id}" class="project"><a href="#">{$project.name}</a></div>
+<ul class="project-sprints" data-uri="{$project.resource_uri}">
+<div class="backlog"><a href="#">backlog</a>
+</ul>
 {/template}

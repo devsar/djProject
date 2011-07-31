@@ -29,32 +29,55 @@ $(function(){
       parse: function(data){
           return data.objects;
       },
-      filtered: function(project_id, sprint_id) {
+      filtered: function(project_id, sprint) {
+    	  var data = {};
     	  if (project_id) {
-    		  url = TASK_API + "?project=" + project_id;
-        	  if (sprint_id) { 
-        		  url = "&sprint=" + sprint_id;
-        	  }
-        	  this.url = url;
-    	  } else {
-    		  this.url = TASK_API;
+    		  data['project'] = project_id;
+    		  try {
+    			  window.current_project = window.projects.get(project_id);
+    		  } catch(err) { 
+    			  window.current_project = null;
+    		  }
+    		  
     	  }
+    	  if (sprint) {
+    		  if (sprint == 'backlog') {
+    			  data['sprint'] = 'backlog';
+    			  //Save something like a mock sprint to represent backlog
+    			  window.current_sprint = {attributes: {name: 'backlog', id: null}, get: function(key){this.attributes[key]}};
+    	      } else {
+    	    	  data['sprint'] = sprint.get('id');
+    	    	  window.current_sprint = sprint; 
+        	  }
+    	  } else {
+    		  window.current_sprint = null; 
+    	  }
+    	  this.url = TASK_API + "?" + $.param(data)
+    	  
           return this.fetch();
       },
+      
     });
 
     window.Sprint = Backbone.Model.extend({
         url: function(){
            return this.get('resource_uri') || this.collection.url;
         }
-    });
+    }); 
 
     window.Sprints = Backbone.Collection.extend({
         url: SPRINT_API,
   	  	model: window.Sprint,
-        parse: function(data){
+  	  	project: null,
+  	  	
+  	  	initialize: function(options) {
+  	  		if (options && options.project) {
+  	  			this.url = SPRINT_API + "?project=" + options.project.get('id');
+  	  		}
+  	  	},
+        parse: function(data) {
             return data.objects;
-      }
+        }
     });
     
     window.Project = Backbone.Model.extend({

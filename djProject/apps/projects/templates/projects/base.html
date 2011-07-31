@@ -39,14 +39,14 @@
 <script src="{{ STATIC_URL }}js/projects.js"></script>
 <script type="text/javascript">
 var pusher = new Pusher('93d0509ce62dd993b05a');
-var channel = pusher.subscribe('test_channel');
-channel.bind('{{ user.username }}', function(data) {
-	if (data.type == 'new_project') {
-		window.app.addProject(new window.Project({project: data.project}));
-	} else if (data.type == 'new_task') {
-		window.app.addTask(new window.Task({task: data.task}));
-	}
+var channel = pusher.subscribe('{{ user.username }}');
+channel.bind('task_created', function(data) {
+	window.app.addTask(new window.Task({task: data.task}));
 }); 
+channel.bind('task_updated', function(data) {
+	var task = window.tasks.get(data.task.id);
+	task.fetch();
+});
 </script>
 {% endblock %}
 

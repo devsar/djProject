@@ -1,9 +1,10 @@
 
 from tastypie.resources import ModelResource
+from tastypie.authorization import Authorization
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
+
 from projects.models import Project
 from tasks.models import Task
-from tastypie.authorization import Authorization
-
 
 
 class ProjectResource(ModelResource):
@@ -23,7 +24,25 @@ class TaskResource(ModelResource):
         queryset = Task.objects.all()
         resource_name = 'task'
         authorization = Authorization()
+        filtering = {
+            'project': ALL_WITH_RELATIONS,
+            'sprint': ALL_WITH_RELATIONS,
+            'description': ALL,
+        }
 
     def get_object_list(self, request):        
         tasks = super(TaskResource, self).get_object_list(request)        
         return tasks.filter(project__member__user=request.user)
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(TaskResource, self).build_filters(filters)
+
+        if "project" in filters:
+            orm_filters["project__id"] = filters['project']
+        if "sprint" in filters:
+            orm_filters["sprint__id"] = filters['sprint']
+        
+        return orm_filters

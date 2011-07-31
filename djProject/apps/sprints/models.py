@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 from projects.models import Project
+from nest.utils import get_pusher
+import logging
 
 SPRINT_STATUS = (
     ('active', _("Active")),
@@ -28,7 +30,23 @@ class Sprint(models.Model):
     
     def __unicode__(self):
         return u"%s" % self.name
-                
+
+    def save(self, *args , ** kwargs ):
+        if self.id is None:
+            message = 'sprint_created'
+        else:
+            message = 'sprint_updated'
+            
+        super(Sprint, self).save(* args, ** kwargs)
+            
+        try:
+            p = get_pusher()
+            for member in self.project.member_set.all():
+                p[member.user.username].trigger(message, {
+                    'sprint':  {'id': self.id, 'project': self.project.id}
+                })
+        except:
+            logging.exception("error notifying")
         
         
 class TimeLog(models.Model):

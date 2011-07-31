@@ -76,6 +76,20 @@ channel.bind('comment_updated', function(data) {
 		popSound.play();
 	}
 });
+channel.bind('sprint_created', function(data) {
+	project = window.projects.get(data.sprint.project);
+	project.fetch();
+	if (popSound) {
+		popSound.play();
+	}
+}); 
+channel.bind('sprint_updated', function(data) {
+	project = window.projects.get(data.sprint.project);
+	project.fetch();
+	if (popSound) {
+		popSound.play();
+	}
+});
 </script>
 {% endblock %}
 

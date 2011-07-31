@@ -232,6 +232,10 @@ div.tc.editing .content {
 	display: none;
 }
 
+.estimated-input, .remaining-input {
+	width: 60%;
+}
+
 .link_menu{
 	text-decoration: none;
 	color: #777;
@@ -267,6 +271,10 @@ a:hover.link_menu, #projects-list a:hover{
 	display: block;
 }
 
-.task{
+.task {
 	display: block;
+}
+
+.tc .content:hover {
+	background: #FFFF99;
 }

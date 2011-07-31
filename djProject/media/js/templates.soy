@@ -42,9 +42,15 @@
 </div>
 <div class="tc owner">{$task.owner ? $task.owner : '--'}</div>
 <div class="tc status">{$task.status}</div>
-<div class="tc estimated">{$task.estimated ? $task.estimated : '--'}</div>
+<div class="tc estimated">
+	<div class="content">{$task.estimated ? $task.estimated : '--'}</div>
+	<div class="edit"><input class="estimated-input" type="text" value=""></div>
+</div>
 /* <div class="tc spend">{$task.spend ? $task.spend : '--'}</div> */
-<div class="tc remaining">{$task.remaining ? $task.remaining : '--'}</div>
+<div class="tc remaining">
+	<div class="content">{$task.remaining ? $task.remaining : '--'}</div>
+	<div class="edit"><input class="remaining-input" type="text" value=""></div>
+</div>
 /* <div class="tc priority">{$task.priority ? $task.priority : '--'}</div> */
 <div id="task-more-{$task.id}" data-id="{$task.id}" class="tc task-details"><a href="#">-></a></div>
 {/template}

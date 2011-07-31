@@ -5,7 +5,7 @@ $(function(){
       className: 'task',
 
       initialize: function() {
-	      this.model.bind('change', this.render, this);
+	      this.model.bind('change', this.render);
 	      this.model.view = this;
 	  },
 
@@ -38,6 +38,7 @@ $(function(){
 	  
 	  
       render: function(){
+    	  if (!this.model) return;
     	  var task = this.model.toJSON();
     	  $(this.el).addClass('tr');
     	  $(this.el).attr("id", "task-" + task.id);

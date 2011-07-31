@@ -12,11 +12,8 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
-		
-	<script src="{{ STATIC_URL }}js/libs/modernizr-2.0.min.js"></script>
+	
 	{% block head_extra %}
 	{% endblock %}
 </head>
@@ -58,10 +55,11 @@
 	</footer>
 </div> <!--! end of #container -->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
-<script src="http://cachedcommons.org/cache/underscore/1.1.0/javascripts/underscore-min.js"></script> 
-<script src="{{ STATIC_URL }}js/backbone-min.js"></script>
+<script type="text/javascript" src="http://cachedcommons.org/cache/underscore/1.1.0/javascripts/underscore-min.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/backbone-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
 <script>
 var API_URL = '/api/v1/';
 </script>

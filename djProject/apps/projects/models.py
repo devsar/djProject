@@ -50,21 +50,6 @@ class Project(models.Model):
         return self
         
     
-    def save(self, *args , ** kwargs ):
-        super(Project, self).save(* args, ** kwargs)
-        try:
-            pusher.app_id = '6417'
-            pusher.key = '93d0509ce62dd993b05a'
-            pusher.secret = 'c824cb5eb3b9c96f863b'           
-            
-            p = pusher.Pusher()
-            for user in User.objects.all():
-                p[user.username].trigger('new_project', {
-                    'project': self.to_dict()
-                })
-        except:
-            logging.exception("error notifying")
-
 
 class Member(models.Model):
     user = models.ForeignKey(User)

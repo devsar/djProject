@@ -258,3 +258,7 @@ a:hover.link_menu, #projects-list a:hover{
 .task{
 	display: block;
 }
+
+.task dt, .task dl{
+	display: inline;
+}

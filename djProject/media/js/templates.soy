@@ -36,7 +36,10 @@
  */
 {template .taskTemplate}
 <div class="tc id task-details"><a href="#">{$task.id}</a></div>
-<div class="tc description">{$task.description}</div>
+<div class="tc description">
+	<div class="content">{$task.description}</div>
+	<div class="edit"><input class="description-input" type="text" value=""></div>
+</div>
 <div class="tc owner">{$task.owner ? $task.owner : '--'}</div>
 <div class="tc status">{$task.status}</div>
 <div class="tc estimated">{$task.estimated ? $task.estimated : '--'}</div>

@@ -287,6 +287,7 @@ a:hover.link_create, #projects-list a:hover{
 .edit input{
 	border: 1px solid #DDD;
 	padding: 2px;
+}
 
 .tc .content:hover {
 	background: #FFFF99;
